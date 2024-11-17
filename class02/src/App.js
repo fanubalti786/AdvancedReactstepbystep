@@ -2,7 +2,7 @@ import React from 'react'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import Button from './components/button/Button'
-import img from './assets/image.png'
+// import img from './assets/image.png'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 import "./components/button/button.css"
@@ -14,7 +14,11 @@ export default function App() {
       <h1>App.js</h1>
       <Button/>
       <Footer/>
-      <img src={img} />
+      {/* <img src={img} /> */}
+      <img src={require("./assets/image.png")} />
+      <img src='/logo192.png' />
+
+
       <Input/>
       
     </div>
