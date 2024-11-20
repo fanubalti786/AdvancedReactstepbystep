@@ -16,7 +16,11 @@ export default function App() {
       <Footer/>
       {/* <img src={img} /> */}
       <img src={require("./assets/image.png")} />
+      <br/>
       <img src='/logo192.png' />
+      <br/>
+      <img src="https://unsplash.com/photos/body-of-water-under-trees-okLTnDZ9HOM" />
+
 
 
       <Input/>
