@@ -1,12 +1,26 @@
 import React from 'react'
 import { data } from '../../constant/data';
-export default function Form(props) {
+import {useState} from 'react'
+export default function Tabeldata() {
+
+  const [info,setInfo] = useState(data)
 
 
-   
 
-   
+  const onClickHandler = (id)=>
+    {
+        let newdata = info.filter((item)=>
+        {
+          return(item.id !== id)
+        })
 
+        setInfo(newdata)
+
+
+    }
+
+
+  
   return (
     <div>
       <div>
@@ -20,7 +34,7 @@ export default function Form(props) {
         </tr>
 
         
-          {data.map((student, index) => {
+          {info.map((student, index) => {
             return (
               
                 <tr>
@@ -29,7 +43,7 @@ export default function Form(props) {
                 <td>{student.email}</td>
                 <td>{student.rolno}</td>
                 <td>{student.class}</td>
-                <button onClick={()=>props.fuc(student.id)}>Delete</button>
+                <button onClick={()=>(onClickHandler(student.id))}>Delete</button>
             </tr>
                 
               

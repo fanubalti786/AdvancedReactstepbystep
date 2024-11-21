@@ -1,12 +1,9 @@
 import React from "react";
-import Form from "../../components/form/Form";
+import Tabeldata from "../../components/tabeldata/Tabeldata";
 export default function Home() {
-    const onClickHandler = (id)=>
-        {
-            alert(id)
-        }
+    
 
   return (
-    <Form fuc={onClickHandler}/>
+    <Tabeldata/>
   );
 }
