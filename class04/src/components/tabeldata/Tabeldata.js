@@ -1,6 +1,7 @@
 import React from 'react'
 import { data } from '../../constant/data';
 import {useState} from 'react'
+import Form from '../form/Form';
 export default function Tabeldata() {
 
   const [info,setInfo] = useState(data)
@@ -23,6 +24,7 @@ export default function Tabeldata() {
   
   return (
     <div>
+      <Form/>
       <div>
       <table>
         <tr>
