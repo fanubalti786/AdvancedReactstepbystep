@@ -1,51 +1,12 @@
-import React from 'react'
-
+import React from "react";
+import Form from "../../components/form/Form";
 export default function Home() {
+    const onClickHandler = (id)=>
+        {
+            alert(id)
+        }
+
   return (
-    <div>
-      <table>
-        <tr>
-            <th>
-                Id:
-            </th>
-            <th>
-                Name:
-            </th>
-            <th>
-                Email:
-            </th>
-            <th>
-                Rollno:
-            </th>
-            <th>
-                class:
-            </th>
-        </tr>
-        
-        <hr/>
-
-        <tr>
-            <td>
-                1
-            </td>
-            <td>
-                irfan
-            </td>
-            <td>
-                fanubalti796
-            </td>
-            <td>
-                21432
-            </td>
-            <td>
-                BSSE
-            </td>
-            
-
-            
-
-        </tr>
-      </table>
-    </div>
-  )
+    <Form fuc={onClickHandler}/>
+  );
 }

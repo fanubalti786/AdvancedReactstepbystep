@@ -1,4 +1,4 @@
-const data = [
+export const data = [
  {
     id:1,
     name:"irfan",
@@ -8,8 +8,8 @@ const data = [
  },
 
  {
-    id:1,
-    name:"irfan",
+    id:2,
+    name:"mumtaz",
     email:"fanubalti796@gmail.com",
     rolno:21432,
     class:"BSSE"
@@ -17,8 +17,8 @@ const data = [
 
 
  {
-    id:1,
-    name:"irfan",
+    id:3,
+    name:"sohail",
     email:"fanubalti796@gmail.com",
     rolno:21432,
     class:"BSSE"
@@ -27,8 +27,8 @@ const data = [
 
 
  {
-    id:1,
-    name:"irfan",
+    id:4,
+    name:"arif",
     email:"fanubalti796@gmail.com",
     rolno:21432,
     class:"BSSE"
