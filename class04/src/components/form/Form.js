@@ -8,17 +8,42 @@ export default function Form(props) {
   const [rollno, setRolno] = useState("");
   const [course, setCourse] = useState("");
 
-  const submitHandler = () => {
-    let data = {
-      id: id,
-      name: name,
-      email: email,
-      rolno: rollno,
-      course: course,
-    };
+  let check = true;
 
-    props.onAddHandler(data);
-    // console.log(data)
+  const submitHandler = () => {
+    if (
+      id === "" ||
+      name === "" ||
+      email === "" ||
+      rollno === "" ||
+      course === ""
+    ) {
+      alert("All fields must be full");
+      check = false;
+    }
+
+    if (isNaN(id) === true && check === true) {
+      alert("id must be a number");
+      check = false;
+    }
+
+    if (email.includes('@') === false && check===true) {
+      alert("@ must required in email");
+      check = false;
+    } 
+    
+    if(check===true) {
+      let data = {
+        id: id,
+        name: name,
+        email: email,
+        rolno: rollno,
+        class: course,
+      };
+
+      props.onAddHandler(data);
+      // console.log(data)
+    }
   };
 
   return (
