@@ -8,6 +8,7 @@ export default function Form(props) {
   const [email, setEmail] = useState("");
   const [rollno, setRolno] = useState("");
   const [course, setCourse] = useState("");
+  const [error,setError] = useState("");
 
   const schema = yup.object().shape({
     id: yup.string().max(5).required(),
@@ -27,23 +28,25 @@ export default function Form(props) {
       class: course,
     };
 
-    // try {
-      let result = await schema.validate(data);
-      console.log(result)
-      console.log(result)
-      console.log(result)
-
-
+    try {
+      // let result = await schema.validate(data);
+      await schema.validate(data);
       props.onAddHandler(data);
-    // } catch (error) {
-    //   console.log("error",error)
-    // }
+      setError("");
+      // console.log(result)
+
+    } catch (error) {
+      console.log("error",error.toString())
+      setError(error.toString())
+    }
 
     
   };
 
   return (
     <div>
+      {error? <div className="bg-danger p-3 ">{error}</div>: ""}
+      
       <input
         type="text"
         className="bg-light"
