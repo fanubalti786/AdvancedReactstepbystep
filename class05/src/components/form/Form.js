@@ -14,8 +14,8 @@ export default function Form(props) {
     id: yup.string().max(5).required(),
     name: yup.string().max(5).required(),
     email: yup.string().email().required(),
-    rolno: yup.number().max(99999).required(),
-    class: yup.string().max(4).required(),
+    rolno: yup.number().max(99999).required().typeError("must 5 characters of number Valid"),
+    class: yup.string().max(4).required()
   });
 
   const submitHandler = async() => {
