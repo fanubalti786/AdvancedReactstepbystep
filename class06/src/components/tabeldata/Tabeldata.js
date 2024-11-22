@@ -5,6 +5,7 @@ import Form from '../form/Form';
 export default function Tabeldata() {
 
   const [info,setInfo] = useState(data)
+  const [update,setupdate] = useState({})
 
 
 
@@ -31,39 +32,41 @@ export default function Tabeldata() {
       }
 
 
-      const onEditHandler = (id)=>
+      const onEditHandler = (student)=>
         {
-          let newobj = info.map((item)=>
-            {
+
+          setupdate(student)
+          // let newobj = info.map((item)=>
+          //   {
              
-              if(id!==item.id)
-              {
-                  return item
-              }
-              else
-              {
-                let newitem = {
+          //     if(id!==item.id)
+          //     {
+          //         return item
+          //     }
+          //     else
+          //     {
+          //       let newitem = {
 
-                  id:"302",
-                  name:"fanu",
-                  email:"balti420@gmail.com",
-                  rolno:"21432",
-                  class:"bsit"
-                }
+          //         id:"302",
+          //         name:"fanu",
+          //         email:"balti420@gmail.com",
+          //         rolno:"21432",
+          //         class:"bsit"
+          //       }
 
-                return newitem;
+          //       return newitem;
 
 
-              }
+          //     }
 
               
               
               
-            }
-            )
+          //   }
+          //   )
 
-            setInfo(newobj)
-              console.log(newobj)
+          //   setInfo(newobj)
+          //   console.log(newobj)
     
     
         }
@@ -99,7 +102,7 @@ export default function Tabeldata() {
                 <td>{student.rolno}</td>
                 <td>{student.class}</td>
                 <td><button className='bg-danger' onClick={()=>onClickHandler(student.id)}>Delete</button></td>
-                <td><button className='bg-info' onClick={()=>onEditHandler(student.id)}>Edit</button></td>
+                <td><button className='bg-info' onClick={()=>onEditHandler(student)}>Edit</button></td>
             </tr>
                 
               
