@@ -10,7 +10,7 @@ export default function Form(props) {
   const [course, setCourse] = useState("");
 
   const schema = yup.object().shape({
-    id: yup.string().max(1).required(),
+    id: yup.string().max(5).required(),
     name: yup.string().max(5).required(),
     email: yup.string().email().required(),
     rolno: yup.number().max(99999).required(),
