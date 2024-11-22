@@ -48,14 +48,13 @@ export default function Form(props) {
 
   return (
     <div>
-      <input type="text" onChange={(e) => setId(e.target.value)}></input>
-      <input type="text" onChange={(e) => setName(e.target.value)}></input>
-      <input type="text" onChange={(e) => setEmail(e.target.value)}></input>
-      <input type="text" onChange={(e) => setRolno(e.target.value)}></input>
-      <input type="text" onChange={(e) => setCourse(e.target.value)}></input>
+      <input type="text" className='bg-light' onChange={(e) => setId(e.target.value)}></input>
+      <input type="text" className='bg-light' onChange={(e) => setName(e.target.value)}></input>
+      <input type="text" className='bg-light' onChange={(e) => setEmail(e.target.value)}></input>
+      <input type="text" className='bg-light' onChange={(e) => setRolno(e.target.value)}></input>
+      <input type="text" className='bg-light' onChange={(e) => setCourse(e.target.value)}></input>
 
       <br />
-      <button onClick={submitHandler}>Submit!</button>
+      <button className="bg-warning" onClick={submitHandler}>Add!</button>
     </div>
-  );
-}
+    )}

@@ -35,27 +35,30 @@ export default function Tabeldata() {
   return (
     <div>
       <Form onAddHandler={onAddHandler}/>
+      <br/>
       <div>
       <table>
-        <tr>
+        <tr className='bg-success'>
           <th>Id:</th>
           <th>Name:</th>
           <th>Email:</th>
           <th>Rollno:</th>
           <th>class:</th>
+          <th>Remove:</th>
+
         </tr>
 
         
           {info.map((student, index) => {
             return (
               
-                <tr>
+                <tr className='bg-secondary'>
                 <td>{student.id}</td>
                 <td>{student.name}</td>
                 <td>{student.email}</td>
                 <td>{student.rolno}</td>
                 <td>{student.class}</td>
-                <button onClick={()=>(onClickHandler(student.id))}>Delete</button>
+                <button className='bg-danger' onClick={()=>(onClickHandler(student.id))}>Delete</button>
             </tr>
                 
               
