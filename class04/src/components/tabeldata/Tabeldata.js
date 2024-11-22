@@ -21,10 +21,20 @@ export default function Tabeldata() {
     }
 
 
+    const onAddHandler = (obj)=>
+      {
+          
+  
+          setInfo([...info,obj])
+  
+  
+      }
+
+
   
   return (
     <div>
-      <Form/>
+      <Form onAddHandler={onAddHandler}/>
       <div>
       <table>
         <tr>
