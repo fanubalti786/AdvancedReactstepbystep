@@ -31,6 +31,44 @@ export default function Tabeldata() {
       }
 
 
+      const onEditHandler = (id)=>
+        {
+          let newobj = info.map((item)=>
+            {
+             
+              if(id!==item.id)
+              {
+                  return item
+              }
+              else
+              {
+                let newitem = {
+
+                  id:"302",
+                  name:"fanu",
+                  email:"balti420@gmail.com",
+                  rolno:"21432",
+                  class:"bsit"
+                }
+
+                return newitem;
+
+
+              }
+
+              
+              
+              
+            }
+            )
+
+            setInfo(newobj)
+              console.log(newobj)
+    
+    
+        }
+
+
   
   return (
     <div>
@@ -45,6 +83,8 @@ export default function Tabeldata() {
           <th>Rollno:</th>
           <th>class:</th>
           <th>Remove:</th>
+          <th>update:</th>
+
 
         </tr>
 
@@ -58,7 +98,8 @@ export default function Tabeldata() {
                 <td>{student.email}</td>
                 <td>{student.rolno}</td>
                 <td>{student.class}</td>
-                <button className='bg-danger' onClick={()=>(onClickHandler(student.id))}>Delete</button>
+                <td><button className='bg-danger' onClick={()=>onClickHandler(student.id)}>Delete</button></td>
+                <td><button className='bg-info' onClick={()=>onEditHandler(student.id)}>Edit</button></td>
             </tr>
                 
               
