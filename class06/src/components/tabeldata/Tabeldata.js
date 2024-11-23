@@ -10,7 +10,7 @@ export default function Tabeldata() {
   // },[])
 
   const [info,setInfo] = useState(data)
-  const [update,setupdate] = useState(null)
+  const [update,setupdate] = useState({})
 
 
 

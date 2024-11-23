@@ -8,7 +8,14 @@ export default function Form(props) {
     {
       if(props.update)
       {
-        alert("update")
+        setId(props.update.id)
+        setName(props.update.name)
+        setEmail(props.update.email)
+        setRolno(props.update.rolno)
+        setCourse(props.update.class)
+
+
+
       }
       
     },[props.update])
@@ -60,6 +67,7 @@ export default function Form(props) {
 
   return (
     <div>
+      <p>{props.update.id}</p>
       {error? <div className="bg-danger p-3 ">{error}</div>: ""}
       
       <input
@@ -95,7 +103,8 @@ export default function Form(props) {
 
       <br />
       <button className="bg-warning" onClick={submitHandler}>
-        Add!
+        {props.update? "Update!": "Add!"}
+        
       </button>
     </div>
   );
