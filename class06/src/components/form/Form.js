@@ -1,8 +1,18 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import * as yup from "yup";
 
 export default function Form(props) {
+
+  useEffect(()=>
+    {
+      if(props.update)
+      {
+        alert("update")
+      }
+      
+    },[props.update])
+
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,6 +42,11 @@ export default function Form(props) {
       // let result = await schema.validate(data);
       await schema.validate(data);
       props.onAddHandler(data);
+      setId("");
+      setName("");
+      setEmail("");
+      setRolno("");
+      setCourse("");
       setError("");
       // console.log(result)
 
@@ -49,26 +64,31 @@ export default function Form(props) {
       
       <input
         type="text"
+        value={id}
         className="bg-light"
         onChange={(e) => setId(e.target.value)}
       ></input>
       <input
         type="text"
+        value={name}
         className="bg-light"
         onChange={(e) => setName(e.target.value)}
       ></input>
       <input
         type="text"
+        value={email}
         className="bg-light"
         onChange={(e) => setEmail(e.target.value)}
       ></input>
       <input
         type="text"
+        value={rollno}
         className="bg-light"
         onChange={(e) => setRolno(e.target.value)}
       ></input>
       <input
         type="text"
+        value={course}
         className="bg-light"
         onChange={(e) => setCourse(e.target.value)}
       ></input>

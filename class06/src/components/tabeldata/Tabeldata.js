@@ -1,11 +1,16 @@
 import React from 'react'
 import { data } from '../../constant/data';
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import Form from '../form/Form';
 export default function Tabeldata() {
 
+  // useEffect(()=>
+  // {
+  //   alert("initialize Tabledata wait please")
+  // },[])
+
   const [info,setInfo] = useState(data)
-  const [update,setupdate] = useState({})
+  const [update,setupdate] = useState(null)
 
 
 
@@ -75,7 +80,7 @@ export default function Tabeldata() {
   
   return (
     <div>
-      <Form onAddHandler={onAddHandler}/>
+      <Form onAddHandler={onAddHandler} update={update}/>
       <br/>
       <div>
       <table>
