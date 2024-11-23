@@ -10,7 +10,9 @@ export default function Tabeldata() {
   // },[])
 
   const [info,setInfo] = useState(data)
-  const [update,setupdate] = useState({})
+  const [update,setupdate] = useState(null)
+  const [empty,setEmpty] = useState(false)
+
 
 
 
@@ -22,6 +24,8 @@ export default function Tabeldata() {
         })
 
         setInfo(newdata)
+        setupdate(null)
+        setEmpty(true)
 
 
     }
@@ -77,10 +81,42 @@ export default function Tabeldata() {
         }
 
 
+        const onUpdateHandler = (newStudent)=>
+        {
+
+          let updateData = info.map((item)=>
+          {
+            if(item.id === update.id)
+            {
+              console.log("ifcondition")
+              return(
+
+                {...item,
+                id:newStudent.id,
+                name:newStudent.name,
+                email:newStudent.email,
+                rolno:newStudent.rolno,
+                class:newStudent.class}
+              )
+            }
+
+            return item;
+          })
+
+          // console.log(updateData)
+          setInfo(updateData)
+          setupdate(null)
+
+
+
+
+        }
+
+
   
   return (
     <div>
-      <Form onAddHandler={onAddHandler} update={update}/>
+      <Form onAddHandler={onAddHandler} update={update} onUpdateHandler={onUpdateHandler} empty={empty}/>
       <br/>
       <div>
       <table>

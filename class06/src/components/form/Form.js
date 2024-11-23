@@ -4,8 +4,14 @@ import * as yup from "yup";
 
 export default function Form(props) {
 
+  
+
+
+  
+
   useEffect(()=>
     {
+
       if(props.update)
       {
         setId(props.update.id)
@@ -13,11 +19,9 @@ export default function Form(props) {
         setEmail(props.update.email)
         setRolno(props.update.rolno)
         setCourse(props.update.class)
-
-
-
+        // setCounter(counter + 1)
       }
-      
+    
     },[props.update])
 
   const [id, setId] = useState("");
@@ -26,6 +30,18 @@ export default function Form(props) {
   const [rollno, setRolno] = useState("");
   const [course, setCourse] = useState("");
   const [error,setError] = useState("");
+  const [counter,setCounter] = useState(0)
+
+  if(props.empty)
+    {
+      setId("");
+        setName("");
+        setEmail("");
+        setRolno("");
+        setCourse("");
+        setError("");
+    }
+
 
   const schema = yup.object().shape({
     id: yup.string().max(5).required(),
@@ -48,7 +64,8 @@ export default function Form(props) {
     try {
       // let result = await schema.validate(data);
       await schema.validate(data);
-      props.onAddHandler(data);
+      {props.update? props.onUpdateHandler(data): props.onAddHandler(data)}
+      // props.onAddHandler(data);
       setId("");
       setName("");
       setEmail("");
@@ -67,7 +84,6 @@ export default function Form(props) {
 
   return (
     <div>
-      <p>{props.update.id}</p>
       {error? <div className="bg-danger p-3 ">{error}</div>: ""}
       
       <input
@@ -103,9 +119,9 @@ export default function Form(props) {
 
       <br />
       <button className="bg-warning" onClick={submitHandler}>
-        {props.update? "Update!": "Add!"}
-        
+        {props.update? "Update":"Add"}
       </button>
+      
     </div>
   );
 }
