@@ -92,11 +92,12 @@ export default function Tabeldata() {
               return(
 
                 {...item,
-                id:newStudent.id,
+                // id:newStudent.id,
                 name:newStudent.name,
                 email:newStudent.email,
                 rolno:newStudent.rolno,
-                class:newStudent.class}
+                // class:newStudent.class
+                }
               )
             }
 
