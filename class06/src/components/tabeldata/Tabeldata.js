@@ -11,7 +11,7 @@ export default function Tabeldata() {
 
   const [info,setInfo] = useState(data)
   const [update,setupdate] = useState(null)
-  const [empty,setEmpty] = useState(false)
+
 
 
 
@@ -25,7 +25,7 @@ export default function Tabeldata() {
 
         setInfo(newdata)
         setupdate(null)
-        setEmpty(true)
+        
 
 
     }
@@ -105,7 +105,7 @@ export default function Tabeldata() {
 
           // console.log(updateData)
           setInfo(updateData)
-          setupdate(null)
+          // setupdate(null)
 
 
 
@@ -116,7 +116,7 @@ export default function Tabeldata() {
   
   return (
     <div>
-      <Form onAddHandler={onAddHandler} update={update} onUpdateHandler={onUpdateHandler} empty={empty}/>
+      <Form onAddHandler={onAddHandler} update={update} onUpdateHandler={onUpdateHandler}/>
       <br/>
       <div>
       <table>

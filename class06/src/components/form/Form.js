@@ -32,15 +32,6 @@ export default function Form(props) {
   const [error,setError] = useState("");
   const [counter,setCounter] = useState(0)
 
-  if(props.empty)
-    {
-      setId("");
-        setName("");
-        setEmail("");
-        setRolno("");
-        setCourse("");
-        setError("");
-    }
 
 
   const schema = yup.object().shape({
