@@ -20,7 +20,8 @@ export default function Tabeldata() {
     const removeItem = [...info];
     removeItem.splice(index, 1);
 
-    setInfo(newdata);
+    // setInfo(newdata);
+    setInfo(removeItem);
     setupdate(null);
   };
 
