@@ -79,7 +79,7 @@ export default function Tabeldata() {
 
     // console.log(updateData)
     setInfo(updateData);
-    // setupdate(null)
+    setupdate(null)
   };
 
   return (
