@@ -28,7 +28,10 @@ export const productSlice = createSlice({
     },
 
     extraReducers:{
-
+        [fetchProduct.fulfilled]: (state,action)=>
+        {
+            state.product = action.payload;
+        }
     }
 
     
