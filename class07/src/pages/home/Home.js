@@ -1,6 +1,13 @@
 import React from 'react'
 import { student } from '../../constant/Constant'
+import { useSelector } from 'react-redux'
+import { store } from '../../store/Store'
+
+const product = useSelector((store)=>store.product.products)
+console.log(product)
 export default function Home() {
+
+
 
     // let newStudent = {...student}; // its not a reference variable
     // let newStudent = student;  // its a reference variable

@@ -12,13 +12,13 @@ export const productSlice = createSlice({
 
     name: "producSlice",
     initialState: {
-        product: []
+        products: []
     },
 
     reducers:{
         setProduct: (state,action)=>
         {
-            state.product = action.payload;
+            state.products = action.payload;
         },
 
         setPost: (state,action)=>
@@ -30,7 +30,7 @@ export const productSlice = createSlice({
     extraReducers:{
         [fetchProduct.fulfilled]: (state,action)=>
         {
-            state.product = action.payload;
+            state.products = action.payload;
         }
     }
 
