@@ -1,11 +1,20 @@
 import React from 'react'
-import { student } from '../../constant/Constant'
-import { useSelector } from 'react-redux'
-import { store } from '../../store/Store'
+import { useSelector,useDispatch } from 'react-redux'
+import { fetchProduct } from '../../store/Slices/productSlice'
 
-const product = useSelector((store)=>store.product.products)
-console.log(product)
+
+
 export default function Home() {
+    const product = useSelector((store)=>store.product.products)
+    console.log(product)
+    const dispatch = useDispatch()
+    
+
+    const GetData = ()=>
+    {
+      dispatch(fetchProduct());
+    }
+    
 
 
 
@@ -35,21 +44,31 @@ export default function Home() {
     // }
 
 
-    let fuc = (a)=>
-    {
-        console.log("Value is ", a)
-    }
+    // let fuc = (a)=>
+    // {
+    //     console.log("Value is ", a)
+    // }
 
-    let fuc1 = fuc;
-    fuc1(5);
+    // let fuc1 = fuc;
+    // fuc1(5);
 
-    console.log(student)
+    // console.log(student)
 
   return (
     <div>
-      <h1>{student.name}</h1>
+      {/* <h1>{student.name}</h1>
       <h1>{student.rolno}</h1>
-      <h1>{student.email}</h1>
+      <h1>{student.email}</h1> */}
+
+      <button onClick={GetData} >GetData!</button>
+      {product.map((item,index)=>
+      {
+        return(
+        <h1>item.name</h1>
+
+        )
+
+      })}
 
      
 
