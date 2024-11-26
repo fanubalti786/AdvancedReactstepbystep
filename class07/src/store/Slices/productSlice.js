@@ -4,12 +4,13 @@ export const fetchProduct = createAsyncThunk(
     "product/fetchProducts",
     async ()=>{
         try {
-            const response = await fetch('https://fakestoreapi.com/products');
-        const data = await response.json();
-        console.log("ExtraReducers Run")
+        const responce = await fetch("https://jsonplaceholder.typicode.com/posts");
+        // fetch('https://fakestoreapi.com/products')
+        const data = await responce.json();
         return data;
         } catch (error) {
-            console.log(error)
+        console.log("ExtraReducers Run")
+            
         }
         
     }
