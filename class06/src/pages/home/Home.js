@@ -4,6 +4,9 @@ export default function Home() {
     
 
   return (
-    <Tabeldata/>
-  );
-}
+    <div>
+      <Tabeldata/>
+
+    </div>
+  )}
+      
