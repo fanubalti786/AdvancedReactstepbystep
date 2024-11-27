@@ -1,52 +1,49 @@
-import { createSlice,createAsyncThunk} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
 export const fetchProduct = createAsyncThunk(
-    "product/fetchProducts",
-    async ()=>{
+    "fetchProduct",
+    async ()=>
+    {
         try {
-        const responce = await fetch('https://fakestoreapi.com/products');
-        // fetch("https://jsonplaceholder.typicode.com/posts")
+        const responce = await fetch("https://jsonplaceholder.typicode.com/posts");
         const data = await responce.json();
+        console.log("Api function triger");
+        console.log(data);
         return data;
-        console.log(data)
         } catch (error) {
-        console.log("ExtraReducers Run")
-            
+            console.log(error);
         }
         
     }
-)
-export const productSlice = createSlice({
+);
 
-    name: "producSlice",
-    initialState: {
-        products: ["irfan","mumtaz","sohail"],
-        Hello:"irfan"
+export const ProductSlice = createSlice({
+    name:"Products",
+    initialState:{
+        products:[]
     },
-
     reducers:{
-        setProduct: (state,action)=>
+
+        setProduct:(state,action)=>
         {
             state.products = action.payload;
         },
 
-        setPost: (state,action)=>
+        setPost:(state,action)=>
         {
-            state.post = action.payload;
+            console.log("setPost");
         }
 
     },
 
-    extraReducers: builder => {
+    extraReducers: builder =>{
         builder.addCase(fetchProduct.fulfilled, (state,action)=>
         {
-            console.log("ExtraReducers Run")
+            console.log("extraReducer function call done");
             state.products = action.payload;
         })
     }
+})
 
-
-});
-
-export const {setProduct} = productSlice.actions;
-export default productSlice.reducer;
+export const {setProduct,setPost} = ProductSlice.actions;
+export default ProductSlice.reducer;

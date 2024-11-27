@@ -1,20 +1,25 @@
 import React from 'react'
-import { useSelector,useDispatch } from 'react-redux'
-import { fetchProduct } from '../../store/Slices/productSlice'
-import { data } from '../../constant/Constant'
+// import { useSelector,useDispatch } from 'react-redux'
+// import { fetchProduct } from '../../store/Slices/ProductSlice';
 
-const info = data;
+
 
 export default function Home() {
-    const product = useSelector((store)=>store.product.products)
-    console.log(product)
-    const dispatch = useDispatch()
-    
 
+  // const product = useSelector(state=>state.productSlice.products);
+  // console.log(product);
+
+  // const dispatch = useDispatch();
+    
     const GetData = ()=>
     {
-      dispatch(fetchProduct());
-    };
+
+      // dispatch(fetchProduct());
+      console.log("hello")
+
+    }
+
+   
 
 
   return (
@@ -23,7 +28,7 @@ export default function Home() {
 
       <button onClick={GetData} >GetData!</button>
 
-      {product?.map((item)=>
+      {/* {product.length > 0?  product?.map((item)=>
       {
         return(
           <div>
@@ -36,8 +41,9 @@ export default function Home() {
           </div>
 
         )
-      })
-      }
+      }):
+      <h1>Not Available Data</h1>
+      } */}
     
 
      
