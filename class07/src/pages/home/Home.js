@@ -22,6 +22,19 @@ export default function Home() {
     
 
       <button onClick={GetData} >GetData!</button>
+
+      {product?.map((item)=>
+      {
+        return(
+          <div>
+          <h1>{item.userId}</h1>
+          <h1>{item.id}</h1>
+          <h1>{item.title}</h1>
+          <h1>{item.body}</h1>
+          </div>
+        )
+      })
+      }
     
 
      
