@@ -5,7 +5,7 @@ export const fetchProduct = createAsyncThunk(
     async ()=>
     {
         try {
-        const responce = await fetch("https://jsonplaceholder.typicode.com/posts");
+        const responce = await fetch('https://fakestoreapi.com/products');
         const data = await responce.json();
         console.log("Api function triger");
         console.log(data);
