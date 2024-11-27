@@ -42,6 +42,8 @@ export const productSlice = createSlice({
             console.log("ExtraReducers Run")
             state.products = action.payload;
         })
+
+
     }
 
 
