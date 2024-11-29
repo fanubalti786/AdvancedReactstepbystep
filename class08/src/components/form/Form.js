@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addProductApi } from '../../store/Slices/ProductSlice';
 export default function Form() {
 
   const [title, setTitle] = useState("");
@@ -8,6 +10,7 @@ export default function Form() {
   const [image, setImage] = useState("https://i.pravatar.cc");
   const [category,setCategory] = useState("")
 
+  const dispatch = useDispatch();
 
 
   const AddHandler = ()=>
@@ -21,7 +24,10 @@ export default function Form() {
 
     }
 
+    dispatch(addProductApi(obj));
+
     
+
   }
 
   return (
@@ -30,6 +36,7 @@ export default function Form() {
       {/* {error? <div className="bg-danger p-3 ">{error}</div>: ""} */}
       
       <input
+        style={{padding:5}}
         type="text"
         value={title}
         placeholder="Enter your title"
@@ -37,6 +44,7 @@ export default function Form() {
         onChange={(e) => setTitle(e.target.value)}
       ></input>
       <input
+        style={{padding:5}}
         type="text"
         value={price}
         placeholder="Enter your price"
@@ -44,21 +52,23 @@ export default function Form() {
         onChange={(e) => setPrice(e.target.value)}
       ></input>
       <input
+        style={{padding:5}}
         type="text"
         value={description}
         placeholder="Enter your description"
         className="bg-light"
         onChange={(e) => setDescription(e.target.value)}
       ></input>
-      {/* <input
+      <input
+        style={{padding:5}}
         type="text"
-        value={image}
-        placeholder="Enter your rollno"
+        value={category}
+        placeholder="Enter your category"
         className="bg-light"
-        onChange={(e) => setImage(e.target.value)}
-      ></input> */}
+        onChange={(e) => setCategory(e.target.value)}
+      ></input>
       <br />
-      <button className="bg-warning" onClick={AddHandler}>
+      <button style={{padding:7}} className="bg-warning" onClick={AddHandler}>
         {/* {props.update? "Update":"Add"} */}
         Add!
       </button>
