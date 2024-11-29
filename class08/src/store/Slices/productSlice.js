@@ -1,13 +1,34 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
 export const fetchProduct = createAsyncThunk(
-    "fetchProduct",
+    "fetch/fetchProduct",
     async ()=>
     {
         try {
         const responce = await fetch('https://fakestoreapi.com/products');
         const data = await responce.json();
         console.log("Api function triger");
+        console.log(data);
+        return data;
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+);
+
+
+
+export const deleteProductApi = createAsyncThunk(
+    "fetch/deleteProduct",
+    async (id)=>
+    {
+        try {
+        const responce = await fetch(`https://fakestoreapi.com/products/${id}`, {
+            method: "DELETE"
+        });
+        const data = await responce.json();
+        // console.log("Api function triger");
         console.log(data);
         return data;
         } catch (error) {
@@ -42,6 +63,19 @@ export const ProductSlice = createSlice({
             console.log("extraReducer function call done");
             state.products = action.payload;
         })
+
+        builder.addCase(deleteProductApi.fulfilled, (state,action)=>
+            {
+                console.log("extraReducerdelete function call done");
+                let id = action.payload.id;
+                let fileterProducts = state.products.filter((product)=>
+                {
+                    return product.id!==id;
+                })
+
+                state.products = fileterProducts;
+                
+            })
     }
 })
 

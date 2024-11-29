@@ -1,6 +1,7 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchProduct } from "../../store/Slices/ProductSlice";
+import { deleteProductApi, fetchProduct } from "../../store/Slices/ProductSlice";
 
 export default function Home() {
   const product = useSelector((state) => state.productSlice.products);
@@ -8,14 +9,24 @@ export default function Home() {
 
   const dispatch = useDispatch();
 
-  const GetData = () => {
+  useEffect(()=>
+  {
     dispatch(fetchProduct());
-  };
+
+  },[])
+
+  
+
+  const deleteProdect = (id)=>
+  {
+
+    dispatch(deleteProductApi(id));
+
+  }
 
   return (
     <div>
-      <button onClick={GetData}>GetData!</button>
-
+      <h1>List Of Products</h1>
       {product.length > 0 ? (
         product?.map((item) => {
           return (
@@ -33,7 +44,7 @@ export default function Home() {
                 <p>{item.description}</p>
                 <p>{item.price}</p>
                 <div style={{display:'flex'}}>
-                <button>Delete</button>
+                <button onClick={()=>deleteProdect(item.id)}>Delete</button>
                 <button>Edit</button>
                 </div>
                 <hr/>
