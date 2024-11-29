@@ -1,16 +1,33 @@
 import React from 'react'
-
+import { useState } from 'react';
 export default function Form() {
 
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("https://i.pravatar.cc");
+  const [category,setCategory] = useState("")
+
+
+
+  const AddHandler = ()=>
+  {
+    const obj = {
+        title,
+        price,
+        description,
+        image,
+        category
+
+    }
+
+    
+  }
 
   return (
     <div>
       <div>
-      {error? <div className="bg-danger p-3 ">{error}</div>: ""}
+      {/* {error? <div className="bg-danger p-3 ">{error}</div>: ""} */}
       
       <input
         type="text"
@@ -41,7 +58,7 @@ export default function Form() {
         onChange={(e) => setImage(e.target.value)}
       ></input> */}
       <br />
-      <button className="bg-warning" onClick={submitHandler}>
+      <button className="bg-warning" onClick={AddHandler}>
         {/* {props.update? "Update":"Add"} */}
         Add!
       </button>
