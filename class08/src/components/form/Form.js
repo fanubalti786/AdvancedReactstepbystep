@@ -1,6 +1,12 @@
 import React from 'react'
 
 export default function Form() {
+
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("https://i.pravatar.cc");
+
   return (
     <div>
       <div>
@@ -8,43 +14,36 @@ export default function Form() {
       
       <input
         type="text"
-        value={id}
-        placeholder="Enter your id"
+        value={title}
+        placeholder="Enter your title"
         className="bg-light"
-        onChange={(e) => setId(e.target.value)}
+        onChange={(e) => setTitle(e.target.value)}
       ></input>
       <input
         type="text"
-        value={name}
-        placeholder="Enter your name"
+        value={price}
+        placeholder="Enter your price"
         className="bg-light"
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => setPrice(e.target.value)}
       ></input>
       <input
         type="text"
-        value={email}
-        placeholder="Enter your email"
+        value={description}
+        placeholder="Enter your description"
         className="bg-light"
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => setDescription(e.target.value)}
       ></input>
-      <input
+      {/* <input
         type="text"
-        value={rollno}
+        value={image}
         placeholder="Enter your rollno"
         className="bg-light"
-        onChange={(e) => setRolno(e.target.value)}
-      ></input>
-      <input
-        type="text"
-        value={course}
-        placeholder="Enter your course"
-        className="bg-light"
-        onChange={(e) => setCourse(e.target.value)}
-      ></input>
-
+        onChange={(e) => setImage(e.target.value)}
+      ></input> */}
       <br />
       <button className="bg-warning" onClick={submitHandler}>
-        {props.update? "Update":"Add"}
+        {/* {props.update? "Update":"Add"} */}
+        Add!
       </button>
       
     </div>
