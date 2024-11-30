@@ -12,6 +12,7 @@ export default function Home() {
 
   useEffect(()=>
   {
+    alert("Triger")
     dispatch(fetchProduct());
 
   },[])
