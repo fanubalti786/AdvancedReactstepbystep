@@ -2,9 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteProductApi, fetchProduct, setUpdate } from "../../store/Slices/ProductSlice";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const product = useSelector((state) => state.productSlice.products);
+  const test = useSelector((state) => state.productSlice.test);
+
   console.log(product);
 
   const dispatch = useDispatch();
@@ -15,6 +18,13 @@ export default function Home() {
     alert("Triger")
     dispatch(fetchProduct());
     }
+
+    return(
+      ()=>
+      {
+        alert("Unmount")
+      }
+    )
     
 
   },[])
@@ -38,8 +48,9 @@ export default function Home() {
 
   return (
     <div>
-      <h2>Add Product</h2>
+      <Link to={"/About"}><button style={{fontSize:16}}>Add Product</button></Link>
       <h1>List Of Products</h1>
+      <h1>{test}</h1>
       {product.length > 0 ? (
         product?.map((item) => {
           return (
@@ -58,7 +69,7 @@ export default function Home() {
                 <p>{item.price}</p>
                 <div style={{display:'flex'}}>
                 <button onClick={()=>deleteProduct(item.id)}>Delete</button>
-                <button onClick={()=>editProduct(item)}>Edit</button>
+                <Link to={"/About"}><button onClick={()=>editProduct(item)}>Edit</button></Link>
                 </div>
                 <hr/>
 

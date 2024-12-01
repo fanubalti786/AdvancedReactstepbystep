@@ -44,7 +44,7 @@ export const addProductApi = createAsyncThunk(
     async (product)=>
     {
         try {
-            alert(product.image)
+            alert(product.id)
         const responce = await fetch(`https://fakestoreapi.com/products`, {
             method: "POST",
             headers:{
@@ -94,7 +94,8 @@ export const ProductSlice = createSlice({
     name:"Products",
     initialState:{
         products:[],
-        update:null
+        update:null,
+        test:"irfan"
     },
     reducers:{
 
@@ -112,6 +113,11 @@ export const ProductSlice = createSlice({
         {
             state.update = action.payload;
         },
+
+        setTest:(state,action)=>
+            {
+                state.test = action.payload;
+            },
 
         
 
@@ -166,5 +172,5 @@ export const ProductSlice = createSlice({
     }
 })
 
-export const {setProduct,setPost,setUpdate} = ProductSlice.actions;
+export const {setProduct,setPost,setUpdate,setTest} = ProductSlice.actions;
 export default ProductSlice.reducer;
