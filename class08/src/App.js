@@ -1,5 +1,6 @@
 import React from 'react'
 import Home from './pages/home/Home'
+import Routing from './routing/Routing'
 // import { useSelector } from 'react-redux'
 
 export default function App() {
@@ -7,7 +8,7 @@ export default function App() {
   // console.log(product)
   return (
     <div>
-      <Home/>
+      <Routing/>
     </div>
   )
 }
