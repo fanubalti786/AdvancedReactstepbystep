@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addProductApi } from '../../store/Slices/ProductSlice';
+import { addProductApi, setUpdate, updateProductApi } from '../../store/Slices/ProductSlice';
 import { ProductSlice } from '../../store/Slices/ProductSlice';
 
 export default function Form() {
@@ -40,7 +40,12 @@ const update = useSelector(state=>state.productSlice.update)
 
     }
 
-    dispatch(addProductApi(obj));
+    {update? dispatch(updateProductApi(obj)):dispatch(addProductApi(obj))}
+    setTitle("")
+    setPrice("")
+    setDescription("")
+    setCategory("")
+
 
     
 

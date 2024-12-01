@@ -65,7 +65,7 @@ export const addProductApi = createAsyncThunk(
     });
 
 
-    export const apdateProductApi = createAsyncThunk(
+    export const updateProductApi = createAsyncThunk(
         "fetch/addProductApi",
         async (product)=>
         {
