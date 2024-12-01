@@ -29,10 +29,9 @@ export const deleteProductApi = createAsyncThunk(
         });
         const data = await responce.json();
         // console.log("Api function triger");
-        console.log(data);
         return data;
         } catch (error) {
-            console.log(error);
+            alert(error);
         }
         
     }
@@ -55,6 +54,7 @@ export const addProductApi = createAsyncThunk(
 
         });
         const data = await responce.json();
+        alert(data.id);
         // console.log("Api function triger");
         console.log(data);
         return data;

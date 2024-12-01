@@ -21,7 +21,7 @@ export default function Home() {
 
   const deleteProdect = (id)=>
   {
-
+    alert(id)
     dispatch(deleteProductApi(id));
 
   }
