@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteProductApi, fetchProduct, setUpdate } from "../../store/Slices/ProductSlice";
-import Form from "../../components/form/Form";
 
 export default function Home() {
   const product = useSelector((state) => state.productSlice.products);
@@ -12,8 +11,11 @@ export default function Home() {
 
   useEffect(()=>
   {
+    if(product.length===0){
     alert("Triger")
     dispatch(fetchProduct());
+    }
+    
 
   },[])
 
@@ -36,7 +38,7 @@ export default function Home() {
 
   return (
     <div>
-      <Form/>
+      <h2>Add Product</h2>
       <h1>List Of Products</h1>
       {product.length > 0 ? (
         product?.map((item) => {

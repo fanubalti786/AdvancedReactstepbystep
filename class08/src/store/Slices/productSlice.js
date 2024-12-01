@@ -111,7 +111,9 @@ export const ProductSlice = createSlice({
         setUpdate:(state,action)=>
         {
             state.update = action.payload;
-        }
+        },
+
+        
 
     },
 
