@@ -45,6 +45,7 @@ export const addProductApi = createAsyncThunk(
     async (product)=>
     {
         try {
+            alert(product.image)
         const responce = await fetch(`https://fakestoreapi.com/products`, {
             method: "POST",
             headers:{
@@ -70,7 +71,8 @@ export const addProductApi = createAsyncThunk(
         async (product)=>
         {
             try {
-            const responce = await fetch(`https://fakestoreapi.com/products`, {
+                alert("updateProductApi")
+            const responce = await fetch(`https://fakestoreapi.com/products${product.id}`, {
                 method: "PATCH",
                 headers:{
                     "Content-Type":"application/json",
@@ -82,7 +84,7 @@ export const addProductApi = createAsyncThunk(
             alert(data.id);
             // console.log("Api function triger");
             console.log(data);
-            return data;
+            // return data;
             } catch (error) {
                 console.log(error);
             }
@@ -141,6 +143,24 @@ export const ProductSlice = createSlice({
                     state.products = newProduct;
                     
                 },)
+
+            
+
+                // builder.addCase(updateProductApi.fulfilled, (state,action)=>
+                //     {
+                //         let newdata = state.products.map((item) => {
+                //             if (item.id === action.payload.id) {
+                //               console.log("ifcondition");
+                //               return action.payload;
+                              
+                //             }
+                      
+                //             return item;
+                //           });
+
+                //           state.products = newdata;
+                        
+                //     },)
 
     }
 })
