@@ -71,7 +71,7 @@ export const addProductApi = createAsyncThunk(
         {
             try {
                 alert("updateProductApi")
-            const responce = await fetch(`https://fakestoreapi.com/products${product.id}`, {
+            const responce = await fetch(`https://fakestoreapi.com/products${id}`, {
                 method: "PATCH",
                 headers:{
                     "Content-Type":"application/json",
