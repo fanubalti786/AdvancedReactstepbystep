@@ -12,7 +12,7 @@ export default function Form() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState("https://i.pravatar.cc");
+  const [image, setImage] = useState("https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg");
   const [category, setCategory] = useState("");
 
   const dispatch = useDispatch();
