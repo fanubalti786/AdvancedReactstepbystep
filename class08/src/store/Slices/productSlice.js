@@ -64,10 +64,36 @@ export const addProductApi = createAsyncThunk(
         
     });
 
+
+    export const apdateProductApi = createAsyncThunk(
+        "fetch/addProductApi",
+        async (product)=>
+        {
+            try {
+            const responce = await fetch(`https://fakestoreapi.com/products`, {
+                method: "PATCH",
+                headers:{
+                    "Content-Type":"application/json",
+                },
+                body:JSON.stringify(product)
+    
+            });
+            const data = await responce.json();
+            alert(data.id);
+            // console.log("Api function triger");
+            console.log(data);
+            return data;
+            } catch (error) {
+                console.log(error);
+            }
+            
+        });
+
 export const ProductSlice = createSlice({
     name:"Products",
     initialState:{
-        products:[]
+        products:[],
+        update:null
     },
     reducers:{
 
@@ -79,6 +105,11 @@ export const ProductSlice = createSlice({
         setPost:(state,action)=>
         {
             console.log("setPost");
+        },
+
+        setUpdate:(state,action)=>
+        {
+            state.update = action.payload;
         }
 
     },
@@ -114,5 +145,5 @@ export const ProductSlice = createSlice({
     }
 })
 
-export const {setProduct,setPost} = ProductSlice.actions;
+export const {setProduct,setPost,setUpdate} = ProductSlice.actions;
 export default ProductSlice.reducer;

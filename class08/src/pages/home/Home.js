@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteProductApi, fetchProduct } from "../../store/Slices/ProductSlice";
+import { deleteProductApi, fetchProduct, setUpdate } from "../../store/Slices/ProductSlice";
 import Form from "../../components/form/Form";
 
 export default function Home() {
@@ -19,12 +19,20 @@ export default function Home() {
 
   
 
-  const deleteProdect = (id)=>
+  const deleteProduct = (id)=>
   {
     alert(id)
     dispatch(deleteProductApi(id));
 
   }
+
+
+  const editProduct = (product)=>
+    {
+      alert(product.id)
+      dispatch(setUpdate(product));
+  
+    }
 
   return (
     <div>
@@ -47,8 +55,8 @@ export default function Home() {
                 <p>{item.description}</p>
                 <p>{item.price}</p>
                 <div style={{display:'flex'}}>
-                <button onClick={()=>deleteProdect(item.id)}>Delete</button>
-                <button>Edit</button>
+                <button onClick={()=>deleteProduct(item.id)}>Delete</button>
+                <button onClick={()=>editProduct(item)}>Edit</button>
                 </div>
                 <hr/>
 

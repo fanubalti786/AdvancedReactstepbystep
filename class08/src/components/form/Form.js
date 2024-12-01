@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductApi } from '../../store/Slices/ProductSlice';
+import { ProductSlice } from '../../store/Slices/ProductSlice';
+
 export default function Form() {
+
+const update = useSelector(state=>state.productSlice.update)
 
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
@@ -11,6 +15,18 @@ export default function Form() {
   const [category,setCategory] = useState("")
 
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+
+    if(update){
+      setTitle(update.title)
+      setPrice(update.price)
+      setDescription(update.description)
+      setCategory(update.category)
+    }
+
+
+  },[update])
 
 
   const AddHandler = ()=>
@@ -69,8 +85,7 @@ export default function Form() {
       ></input>
       <br />
       <button style={{padding:7}} className="bg-warning" onClick={AddHandler}>
-        {/* {props.update? "Update":"Add"} */}
-        Add!
+        {update? "Update":"Add"}
       </button>
       
     </div>
