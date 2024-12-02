@@ -14,10 +14,10 @@ export default function Home() {
 
   useEffect(()=>
   {
-    if(product.length===0){
+    
     alert("Triger")
     dispatch(fetchProduct());
-    }
+    
 
     return(
       ()=>

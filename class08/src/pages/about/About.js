@@ -17,7 +17,6 @@ const dispatch = useDispatch()
     
   return (
     <div>
-      <Link to={"/"}><button style={{fontSize:12}}>Home</button></Link>
       <Form/>
     </div>
   )
