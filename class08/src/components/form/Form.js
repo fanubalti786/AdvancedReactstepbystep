@@ -62,6 +62,7 @@ export default function Form() {
 
   return (
     <div>
+      <Link to={"/Home"}><button>Home</button></Link>
       <Link to={"/New"}><h1>New</h1></Link>
       <div>
         {/* {error? <div className="bg-danger p-3 ">{error}</div>: ""} */}
@@ -99,13 +100,13 @@ export default function Form() {
           onChange={(e) => setCategory(e.target.value)}
         ></input>
         <br />
-        <Link to={"/"}><button
+        <button
           style={{ padding: 7 }}
           className="bg-warning"
           onClick={AddHandler}
         >
           {update ? "Update" : "Add"}
-        </button></Link>
+        </button>
       </div>
     </div>
   );
