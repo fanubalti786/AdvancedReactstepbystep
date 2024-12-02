@@ -48,6 +48,7 @@ export default function Home() {
 
   return (
     <div>
+      <Link to={"/New"}><h1>New!</h1></Link>
       <Link to={"/About"}><button style={{fontSize:16}}>Add Product</button></Link>
       <h1>List Of Products</h1>
       <h1>{test}</h1>

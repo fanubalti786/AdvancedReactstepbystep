@@ -1,5 +1,4 @@
 import React from 'react'
-import Home from './pages/home/Home'
 import Routing from './routing/Routing'
 // import { useSelector } from 'react-redux'
 

@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import Home from '../pages/home/Home';
 import About from '../pages/about/About';
+import New from '../pages/contact/New';
 
 
 const router = createBrowserRouter(
@@ -18,6 +19,13 @@ const router = createBrowserRouter(
             path:"/About",
             element: <About/>
         },
+
+        {
+            path:"/New",
+            element: <New/>
+        },
+
+     
     ]
 );
 
