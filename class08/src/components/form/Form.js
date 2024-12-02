@@ -100,13 +100,13 @@ export default function Form() {
           onChange={(e) => setCategory(e.target.value)}
         ></input>
         <br />
-        <button
+        <Link to={"/"}><button
           style={{ padding: 7 }}
           className="bg-warning"
           onClick={AddHandler}
         >
           {update ? "Update" : "Add"}
-        </button>
+        </button></Link>
       </div>
     </div>
   );

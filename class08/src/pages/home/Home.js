@@ -14,9 +14,12 @@ export default function Home() {
 
   useEffect(()=>
   {
-    
-    alert("Triger")
+    if(product.length === 0)
+    {
+      alert("Triger")
     dispatch(fetchProduct());
+    }
+    
     
 
     return(
