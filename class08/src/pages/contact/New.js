@@ -7,8 +7,11 @@ export default function New() {
 
   return (
     <div>
-      <h1>Contact Us</h1>
+      <h1>New</h1>
       <h2>{test}</h2>
+      <div>DAta</div>
+
+
     </div>
   )
 }
