@@ -153,21 +153,21 @@ export const ProductSlice = createSlice({
 
             
 
-                // builder.addCase(updateProductApi.fulfilled, (state,action)=>
-                //     {
-                //         let newdata = state.products.map((item) => {
-                //             if (item.id === action.payload.id) {
-                //               console.log("ifcondition");
-                //               return action.payload;
+                builder.addCase(updateProductApi.fulfilled, (state,action)=>
+                    {
+                        let newdata = state.products.map((item) => {
+                            if (item.id === action.payload.id) {
+                              console.log("ifcondition");
+                              return action.payload;
                               
-                //             }
+                            }
                       
-                //             return item;
-                //           });
+                            return item;
+                          });
 
-                //           state.products = newdata;
+                          state.products = newdata;
                         
-                //     },)
+                    },)
 
     }
 })
