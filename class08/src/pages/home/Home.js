@@ -68,6 +68,8 @@ export default function Home() {
               </div>
 
               <div>
+                <h1>{item.image}</h1>
+                <h1>{item.id}</h1>
                 <h1>{item.title}</h1>
                 <p>{item.description}</p>
                 <p>{item.price}</p>

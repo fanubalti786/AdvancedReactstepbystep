@@ -27,7 +27,7 @@ export const deleteProductApi = createAsyncThunk(
             method: "DELETE"
         });
         const data = await responce.json();
-        // console.log("Api function triger");
+        console.log(data)
         return data;
         } catch (error) {
             alert(error);
