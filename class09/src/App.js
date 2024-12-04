@@ -6,7 +6,7 @@ export default function App() {
   
   return (
     <div>
-      <Routing/>
+      <Routing/> // its a navigation 
     </div>
   )
 }
