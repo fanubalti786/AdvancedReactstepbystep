@@ -3,16 +3,17 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {  fetchProduct } from "../../store/Slices/ProductSlice";
 import Form from "../../components/form/Form";
+import { db } from "../../config/firebase";
 
 export default function Home() {
   const product = useSelector((state) => state.productSlice.products);
 
-  console.log(product);
+  console.log("hello")
 
   const dispatch = useDispatch();
 
   
-    
+    console.log(db)
 
 
 
