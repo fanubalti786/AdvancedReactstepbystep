@@ -5,11 +5,8 @@ import {
   addProductApi,
   updateProductApi,
 } from "../../store/Slices/ProductSlice";
-import { Link } from "react-router-dom";
 
 export default function Form() {
-  const update = useSelector((state) => state.productSlice.update);
-  const [id,setId] = useState("");
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -18,27 +15,12 @@ export default function Form() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (update) {
-      setId(update.id);
-      setTitle(update.title);
-      setPrice(update.price);
-      setDescription(update.description);
-      setCategory(update.category);
-    }
-  }, [update]);
+
+    
 
   const AddHandler = () => {
     let obj;
-    if (update) {
-      obj = {
-        title,
-        price,
-        description,
-        image,
-        category
-      };
-    } else {
+    
       obj = {
         title,
         price,
@@ -46,13 +28,9 @@ export default function Form() {
         image,
         category,
       };
-    }
-
-    alert(image);
-
-    {
-      update ? dispatch(updateProductApi(obj)) : dispatch(addProductApi(obj));
-    }
+  
+    dispatch(addProductApi(obj));
+    
     setTitle("");
     setPrice("");
     setDescription("");
@@ -61,10 +39,8 @@ export default function Form() {
 
   return (
     <div>
-      <Link to={"/Home"}><button>Home</button></Link>
-      <Link to={"/New"}><h1>New</h1></Link>
+    
       <div>
-        {/* {error? <div className="bg-danger p-3 ">{error}</div>: ""} */}
 
         <input
           style={{ padding: 5 }}
@@ -99,13 +75,13 @@ export default function Form() {
           onChange={(e) => setCategory(e.target.value)}
         ></input>
         <br />
-        <Link to={"/"}><button
+        <button
           style={{ padding: 7 }}
           className="bg-warning"
           onClick={AddHandler}
         >
-          {update ? "Update" : "Add"}
-        </button></Link>
+          Add!
+        </button>
       </div>
     </div>
   );

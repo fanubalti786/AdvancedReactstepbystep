@@ -6,7 +6,7 @@ export default function App() {
   
   return (
     <div>
-      <Routing/> // its a routing! means we can navigate on page to other
+      <Routing/> 
     </div>
   )
 }
