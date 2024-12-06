@@ -12,26 +12,29 @@ export default function Home() {
 
   const dispatch = useDispatch();
 
-  useEffect(()=>
+  // useEffect(()=>
+  // {
+  //   if(true)
+  //   {
+  //     alert("Triger")
+  //   dispatch(fetchProduct());
+  //   }
+    
+    
+
+  //   return(
+  //     ()=>
+  //     {
+  //       alert("Unmount")
+  //     }
+  //   )
+
+  // },[])
+
+  const getProduct = () =>
   {
-    if(product.length === 0)
-    {
-      alert("Triger")
     dispatch(fetchProduct());
-    }
-    
-    
-
-    return(
-      ()=>
-      {
-        alert("Unmount")
-      }
-    )
-
-  },[])
-
-  
+  }
   
 
   const deleteProduct = (id)=>
@@ -55,18 +58,11 @@ export default function Home() {
       <Link to={"/About"}><button style={{fontSize:16}}>Add Product</button></Link>
       <h1>List Of Products</h1>
       <h1>{test}</h1>
-      {product.length > 0 ? (
+      <button onClick={getProduct}>Get!</button>
+
+      {true? (
         product?.map((item) => {
           return (
-            <div style={{display:'flex'}}>
-              <div style={{padding:10}}>
-                <img
-                  style={{ width: 100 }}
-                  src={item.image}
-                  alt={product.title}
-                />
-              </div>
-
               <div>
                 <h1>{item.image}</h1>
                 <h1>{item.id}</h1>
@@ -80,7 +76,7 @@ export default function Home() {
                 <hr/>
 
               </div>
-            </div>
+            
           );
         })
       ) : (

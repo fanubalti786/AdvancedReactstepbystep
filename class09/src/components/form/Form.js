@@ -32,7 +32,6 @@ export default function Form() {
     let obj;
     if (update) {
       obj = {
-        id,
         title,
         price,
         description,

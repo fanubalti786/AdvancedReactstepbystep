@@ -1,13 +1,27 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import { db } from '../../config/firebase';
+import { addDoc, collection, getDocs } from 'firebase/firestore';
 
 export const fetchProduct = createAsyncThunk(
     "fetch/fetchProduct",
     async ()=>
     {
         try {
-        const responce = await fetch('https://fakestoreapi.com/products');
-        const data = await responce.json();
-        console.log("Api function triger");
+        alert("click")
+        // const responce = await fetch('https://fakestoreapi.com/products');
+        // const data = await responce.json();
+        const collectionRef = collection(db,"products");
+        const docs = await getDocs(collectionRef);
+        let data = []
+        docs.forEach((doc)=>
+        {
+            data.push({
+                id: doc.id,
+                ...doc.data()
+            })
+
+        })
+        console.log(data)
         return data;
         } catch (error) {
             console.log(error);
@@ -44,20 +58,10 @@ export const addProductApi = createAsyncThunk(
     async (product)=>
     {
         try {
-            alert(product.id)
-        const responce = await fetch(`https://fakestoreapi.com/products`, {
-            method: "POST",
-            headers:{
-                "Content-Type":"application/json",
-            },
-            body:JSON.stringify(product)
-
-        });
-        const data = await responce.json();
-        alert(data.id);
-        // console.log("Api function triger");
-        console.log(data);
-        return data;
+        const collectionRef = collection(db,"product");
+        const responce = addDoc(collectionRef,product);
+        alert(responce);
+        return product;
         } catch (error) {
             console.log(error);
         }
