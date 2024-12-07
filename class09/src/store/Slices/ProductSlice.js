@@ -39,8 +39,9 @@ export const addProductApi = createAsyncThunk(
     async (product)=>
     {
         try {
-        const collectionRef = collection(db,"product");
-        const responce = addDoc(collectionRef,product);
+        console.log(product)
+        const collectionRef = collection(db,"products");
+        const responce = await addDoc(collectionRef,product);
         alert(responce);
         return product;
         } catch (error) {
@@ -50,11 +51,27 @@ export const addProductApi = createAsyncThunk(
     });
 
 
+    // export const updateProductApi = createAsyncThunk(
+    //     "fetch/updateProductApi",
+    //     async (product)=>
+    //     {
+    //         try {
+    //         const collectionRef = collection(db,"products");
+    //         const responce = await addDoc(collectionRef,product);
+    //         alert(responce);
+    //         return product;
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+            
+    //     });
+
+
   
 export const ProductSlice = createSlice({
     name:"Products",
     initialState:{
-        products:[]
+        products:null
         
     },
     reducers:{

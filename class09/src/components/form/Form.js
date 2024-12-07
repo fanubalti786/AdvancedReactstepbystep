@@ -5,6 +5,8 @@ import {
   addProductApi,
   updateProductApi,
 } from "../../store/Slices/ProductSlice";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../config/firebase";
 
 export default function Form() {
   const [title, setTitle] = useState("");
@@ -18,27 +20,22 @@ export default function Form() {
 
     
 
-  const AddHandler = () => {
+  const AddHandler = async () => {
     let obj;
     
       obj = {
+        image,
         title,
         price,
         description,
-        image,
         category,
       };
-  
-    dispatch(addProductApi(obj));
-    
-    setTitle("");
-    setPrice("");
-    setDescription("");
-    setCategory("");
+    dispatch(addProductApi(obj))
+     
   };
 
   return (
-    <div>
+    <div className="border border-red-200">
     
       <div>
 

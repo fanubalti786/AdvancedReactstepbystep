@@ -3,17 +3,14 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {  fetchProduct } from "../../store/Slices/ProductSlice";
 import Form from "../../components/form/Form";
-import { db } from "../../config/firebase";
 
 export default function Home() {
   const product = useSelector((state) => state.productSlice.products);
 
-  console.log("hello")
 
   const dispatch = useDispatch();
 
   
-    console.log(db)
 
 
 
@@ -34,14 +31,14 @@ export default function Home() {
       <h1>List Of Products</h1>
       <button onClick={getProduct}>Get!</button>
 
-      {true? (
+      {product? (
         product?.map((item) => {
           return (
               <div>
                 <h1>{item.image}</h1>
                 <h1>{item.id}</h1>
                 <h1>{item.title}</h1>
-                <p>{item.description}</p>
+                <p>{item.category}</p>
                 <p>{item.price}</p>
                 <div style={{display:'flex'}}>
                 </div>
