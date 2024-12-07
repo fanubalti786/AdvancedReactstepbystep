@@ -62,7 +62,7 @@ export default function Form() {
 
   return (
     <div>
-      <Link to={"/Home"}><button>Home</button></Link>
+      <Link to={"/"}><button>Home</button></Link>
       <Link to={"/New"}><h1>New</h1></Link>
       <div>
         {/* {error? <div className="bg-danger p-3 ">{error}</div>: ""} */}
