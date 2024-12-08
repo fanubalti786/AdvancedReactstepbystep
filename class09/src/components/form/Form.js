@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { storage } from "../../config/firebase";
+import {ref,metadata, uploadBytes, getDownloadURL } from "firebase/storage";
 import {
   addProductApi,
   updateProductApi
@@ -13,7 +15,7 @@ export default function Form(props) {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState("https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg");
+  const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
 
   const dispatch = useDispatch();
@@ -32,7 +34,25 @@ export default function Form(props) {
       
   },[props.update])
 
-
+  const imageHandler = async (e)=>
+  {
+    // try {
+    //   const file = e.target.files[0];
+    //   const fileRef = ref(storage, 'images/'+parseInt(Math.random() * 23345353)+file.name;
+    //   const metadata = {
+    //     contentType: file.type
+    //   };
+    //   const response = await uploadBytes(fileRef,metadata,file);
+    //   console.log("response",response);
+    //   const url = await getDownloadURL(fileRef);
+    //   console.log("Url", url);
+    // } catch (error) {
+    //   console.log("error", error)
+    // }
+    const file = e.target.files[0];
+    setImage('images/'+parseInt(Math.random() * 23345353)+file.name);
+   
+  }
     
 
   const AddHandler = async () => {
@@ -118,13 +138,12 @@ export default function Form(props) {
           className="bg-light"
           onChange={(e) => setCategory(e.target.value)}
         ></input>
-        <input
+         <input
           style={{ padding: 5 }}
-          type="input"
-          value={category}
-          placeholder="Enter your category"
+          type="file"
+          placeholder=""
           className="bg-light"
-          onChange={(e) => setCategory(e.target.value)}
+          onChange={(e) => imageHandler(e)}
         ></input>
         <br />
         <button
