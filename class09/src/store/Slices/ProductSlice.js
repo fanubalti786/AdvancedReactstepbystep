@@ -63,19 +63,25 @@ export const fetchProduct = createAsyncThunk(
 
 export const addProductApi = createAsyncThunk(
     "fetch/addProductApi",
-    async (product)=>
-    {
+    async (product) => {
         try {
-        console.log(product)
-        const collectionRef = collection(db,"products");
-        const responce = await addDoc(collectionRef,product);
-        alert(responce);
-        return product;
+            console.log(product);  
+            const collectionRef = collection(db, "products");
+            // Add the product to the database and get the document reference
+            const responce = await addDoc(collectionRef, product);
+
+            // Access the generated ID
+            const generatedId = responce.id;
+            console.log("Generated ID:", generatedId);
+
+            // Optionally, return the product with the generated ID if needed
+            return { ...product, id: generatedId };
         } catch (error) {
-            console.log(error);
+            console.log("Error adding product:", error);
+            throw error; // Throw the error for proper error handling
         }
-        
-    });
+    }
+);
 
 
 
@@ -84,7 +90,7 @@ export const addProductApi = createAsyncThunk(
         async (id)=>
         {
             try {
-            console.log(id)
+            alert("delete")
             const dogRef = doc(db,"products",id);
             const responce = await deleteDoc(dogRef);
             return id;
@@ -98,14 +104,14 @@ export const addProductApi = createAsyncThunk(
 
     export const updateProductApi = createAsyncThunk(
         "fetch/updateProductApi",
-        async (product,key)=>
+        async (product)=>
         {
-            alert(key)
+            let copy = {...product};
             try {
-            const docRef = doc(db,"products",key);
-            const responce = await updateDoc(product);
-            alert(responce);
-            return key;
+            const docRef = doc(db,"products",product.id);
+            delete product.id;
+            const responce = await updateDoc(docRef,product);
+            return copy;
             } catch (error) {
                 console.log(error);
             }
@@ -168,17 +174,18 @@ export const ProductSlice = createSlice({
                     console.log("extraReducerdelete function call done");
                     let newProduct = state.products.filter((item)=>
                     {
-                        return state.products.id !== action.payload.id
+                        return item.id !== action.payload
                     })
+                    alert(newProduct.id)
                     state.products = newProduct;
                     
                 },)
 
                 builder.addCase(updateProductApi.fulfilled, (state,action)=>
                     {
-                        alert("update")
+                        alert(action.payload.id)
                         let newdata = state.products.map((item) => {
-                            if (item.id === action.payload) {
+                            if (item.id === action.payload.id) {
                               return action.payload;
                               
                             }

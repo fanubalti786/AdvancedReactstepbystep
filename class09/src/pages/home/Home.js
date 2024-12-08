@@ -32,6 +32,7 @@ export default function Home() {
 
     const updateHandler = ((item)=>
     {
+      alert(item.id)
       dispatch(setUpdate(item))
     })
 

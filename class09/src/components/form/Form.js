@@ -21,6 +21,7 @@ export default function Form(props) {
     {
       if(props.update)
         {
+          alert("input set")
           setId(props.update.id)
           setTitle(props.update.title);
           setPrice(props.update.price);
@@ -35,9 +36,22 @@ export default function Form(props) {
 
   const AddHandler = async () => {
     let obj;
-    let key = id;
 
-    
+
+    if(props.update)
+    {
+      obj = {
+        id,
+        image,
+        title,
+        price,
+        description,
+        category,
+      }
+
+    }
+    else
+    {
       obj = {
         image,
         title,
@@ -45,13 +59,16 @@ export default function Form(props) {
         description,
         category,
       }
+    }
+    
+      
   
     
       
 
       if(props.update)
       {
-        dispatch(updateProductApi(obj,key))
+        dispatch(updateProductApi(obj))
 
       }
       else
