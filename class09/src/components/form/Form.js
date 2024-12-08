@@ -118,6 +118,14 @@ export default function Form(props) {
           className="bg-light"
           onChange={(e) => setCategory(e.target.value)}
         ></input>
+        <input
+          style={{ padding: 5 }}
+          type="input"
+          value={category}
+          placeholder="Enter your category"
+          className="bg-light"
+          onChange={(e) => setCategory(e.target.value)}
+        ></input>
         <br />
         <button
           style={{ padding: 7 }}
