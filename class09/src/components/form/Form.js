@@ -5,6 +5,7 @@ import {
   addProductApi,
   updateProductApi
 } from "../../store/Slices/ProductSlice";
+import { setUpdate } from "../../store/Slices/ProductSlice";
 
 
 export default function Form(props) {
@@ -62,10 +63,6 @@ export default function Form(props) {
     }
     
       
-  
-    
-      
-
       if(props.update)
       {
         dispatch(updateProductApi(obj))
@@ -75,6 +72,8 @@ export default function Form(props) {
       {
         dispatch(addProductApi(obj))
       }
+    
+    dispatch(setUpdate(null))
     setTitle("");
     setCategory("");
     setDescription("");
@@ -125,7 +124,7 @@ export default function Form(props) {
           className="bg-warning"
           onClick={AddHandler}
         >
-          Add!
+          {props.update? "Update!":"Add!"}
         </button>
       </div>
     </div>

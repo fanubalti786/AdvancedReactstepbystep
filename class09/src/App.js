@@ -1,12 +1,13 @@
 import React from 'react'
-import Routing from './routing/Routing'
-// import { useSelector } from 'react-redux'
+import Home from './pages/home/Home'
 
 export default function App() {
   
   return (
     <div>
-      <Routing/> 
+
+      <Home/>
+      
     </div>
   )
 }
