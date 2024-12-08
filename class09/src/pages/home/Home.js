@@ -1,23 +1,41 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {  fetchProduct } from "../../store/Slices/ProductSlice";
+import {  deleteProductApi, fetchProduct } from "../../store/Slices/ProductSlice";
+import { setUpdate } from "../../store/Slices/ProductSlice";
 import Form from "../../components/form/Form";
 
 export default function Home() {
   const product = useSelector((state) => state.productSlice.products);
+  const update = useSelector((state) => state.productSlice.update);
+
 
 
   const dispatch = useDispatch();
 
   
+  useEffect(()=>
+    {
+
+      dispatch(fetchProduct());
+      
+    
+  
+    },[])
 
 
+    const deleteHandler = (id)=>
+    {
+      alert(id)
+      dispatch(deleteProductApi(id))
+    }
 
-  const getProduct = () =>
-  {
-    dispatch(fetchProduct());
-  }
+    const updateHandler = ((item)=>
+    {
+      dispatch(setUpdate(item))
+    })
+
+  
   
 
   
@@ -27,9 +45,9 @@ export default function Home() {
 
   return (
     <div>
-      <Form/>
+      <Form update = {update}/>
       <h1>List Of Products</h1>
-      <button onClick={getProduct}>Get!</button>
+      <button>Get!</button>
 
       {product? (
         product?.map((item) => {
@@ -40,8 +58,9 @@ export default function Home() {
                 <h1>{item.title}</h1>
                 <p>{item.category}</p>
                 <p>{item.price}</p>
-                <div style={{display:'flex'}}>
-                </div>
+                <button onClick={()=>deleteHandler(item.id)}>Delete</button>
+                <button onClick={()=>updateHandler(item)}>Edit</button>
+
                 <hr/>
 
               </div>

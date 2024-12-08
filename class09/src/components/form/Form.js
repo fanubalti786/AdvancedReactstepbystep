@@ -3,12 +3,12 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addProductApi,
-  updateProductApi,
+  updateProductApi
 } from "../../store/Slices/ProductSlice";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../config/firebase";
 
-export default function Form() {
+
+export default function Form(props) {
+  const [id,setId] = useState("")
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -17,11 +17,26 @@ export default function Form() {
 
   const dispatch = useDispatch();
 
+  useEffect(()=>
+    {
+      if(props.update)
+        {
+          setId(props.update.id)
+          setTitle(props.update.title);
+          setPrice(props.update.price);
+          setDescription(props.update.description);
+          setCategory(props.update.category);
+        }
+      
+  },[props.update])
+
 
     
 
   const AddHandler = async () => {
     let obj;
+    let key = id;
+
     
       obj = {
         image,
@@ -29,8 +44,24 @@ export default function Form() {
         price,
         description,
         category,
-      };
-    dispatch(addProductApi(obj))
+      }
+  
+    
+      
+
+      if(props.update)
+      {
+        dispatch(updateProductApi(obj,key))
+
+      }
+      else
+      {
+        dispatch(addProductApi(obj))
+      }
+    setTitle("");
+    setCategory("");
+    setDescription("");
+    setPrice("");
      
   };
 
