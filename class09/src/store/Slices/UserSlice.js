@@ -5,9 +5,18 @@ import { addDoc, collection, deleteDoc, doc, getDocs, limit, onSnapshot, orderBy
 
 export const signInAuth = createAsyncThunk(
     "signInAuth",
-     (user)=>{
+     ()=>{
         alert("signInAuth");
         return 5;
+    }
+
+)
+
+
+export const loginAuth = createAsyncThunk(
+    "signInAuth",
+     (user)=>{
+        alert("LoginInAuth");
     }
 
 )
@@ -34,9 +43,14 @@ export const UserSlice = createSlice({
     {
         builder.addCase(signInAuth.fulfilled,(state,actio)=>
         {
-            console.log(actio.payload)
+            console.log("signInBuilder")
             state.users = actio.payload
-        })
+        },)
+
+        builder.addCase(loginAuth.fulfilled,(state,actio)=>
+            {
+                console.log("loginBuilder")
+            },)
     }
     
     
