@@ -7,7 +7,6 @@ export const signInAuth = createAsyncThunk(
     "signInAuth",
      ()=>{
         alert("signInAuth");
-        return 5;
     }
 
 )

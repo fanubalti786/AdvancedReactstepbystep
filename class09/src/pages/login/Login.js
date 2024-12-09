@@ -1,14 +1,15 @@
 import React from 'react'
 import { useState } from 'react';
+import { useSelector,useDispatch} from 'react-redux'
+import { loginAuth } from '../../store/Slices/UserSlice';
 export default function Login() {
 
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
-    const loginAuth = ()=>
-        {
-            alert("LoginAuth");
-        }
+    const dispatch = useDispatch()
+
+    
     
     
         const loginHandler = ()=>
@@ -20,7 +21,7 @@ export default function Login() {
             }
     
     
-            loginAuth(user);
+            useDispatch(loginAuth(user));
     
     
         }
