@@ -4,6 +4,8 @@ import { useSelector,useDispatch} from 'react-redux'
 import { logInAuth } from '../../store/Slices/UserSlice';
 export default function Login() {
 
+  const users = useSelector((state)=>state.UserSlice.users)
+
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
@@ -59,6 +61,19 @@ export default function Login() {
         >
             Login
         </button>
+
+        {users.length > 0 && users.map((value)=>
+        {
+          return (
+            <dive>
+            <h1>{value.fullName}</h1>
+            <h1>{value.email}</h1>
+            <h1>{value.password}</h1>
+
+
+            </dive>
+          )
+        })}
     </div>
   )
 }
