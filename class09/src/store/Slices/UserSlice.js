@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { db } from "../../config/firebase";
 import { auth } from "../../config/firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import {
   addDoc,
   collection,
@@ -18,6 +18,26 @@ import {
   getDoc
 } from "firebase/firestore";
 
+
+
+export const getCurrentUser = createAsyncThunk(
+    "getCurrentUser",
+    async ()=>
+    {
+        try {
+            const user = auth.currentUser;
+            if(user)
+            {
+                return user;
+            }
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+)
+
+
+
 export const signInAuth = createAsyncThunk("signInAuth", async (user) => {
   try {
     alert("signInAuth");
@@ -30,6 +50,35 @@ export const signInAuth = createAsyncThunk("signInAuth", async (user) => {
     console.log(error);
   }
 });
+
+
+
+
+
+
+
+
+export const logOutAuth = createAsyncThunk(
+    "logOutAuth",
+    async ()=>
+    {
+        try {
+            await signOut(auth);
+            return true;
+        } catch (error) {
+            console.log(error.message)
+            
+        }
+    }
+)
+
+
+
+
+
+
+
+
 
 export const logInAuth = createAsyncThunk("logInAuth", async (user) => {
     try {
@@ -77,6 +126,12 @@ export const UserSlice = createSlice({
       console.log("extraReducer function call done");
       state.users = action.payload;
     });
+
+
+    builder.addCase(logOutAuth.fulfilled, (state, action) => {
+        console.log("extraReducer function call done", action.payload);
+        state.users = null
+      });
   },
 });
 

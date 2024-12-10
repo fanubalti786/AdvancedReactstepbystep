@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {  deleteProductApi, fetchProduct } from "../../store/Slices/ProductSlice";
 import { setUpdate } from "../../store/Slices/ProductSlice";
 import Form from "../../components/form/Form";
+import { logOutAuth } from "../../store/Slices/UserSlice";
+import { getCurrentUser } from "../../store/Slices/UserSlice";
 
 export default function Home() {
   const product = useSelector((state) => state.productSlice.products);
@@ -12,6 +14,12 @@ export default function Home() {
 
 
   const dispatch = useDispatch();
+
+  useEffect(()=>
+  {
+    dispatch(getCurrentUser())
+  })
+
   // its a comment 
   
   useEffect(()=>
@@ -36,6 +44,11 @@ export default function Home() {
       dispatch(setUpdate(item))
     })
 
+    const logoutHandler = ()=>
+    {
+      dispatch(logOutAuth())
+    }
+
   
   
 
@@ -48,7 +61,7 @@ export default function Home() {
     <div>
       <Form update = {update}/>
       <h1>List Of Products</h1>
-      <button>Get!</button>
+      <button onClick={logoutHandler}><h1>LogOut</h1></button>
 
       {product? (
         product?.map((item) => {
