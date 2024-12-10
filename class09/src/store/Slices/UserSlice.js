@@ -32,21 +32,34 @@ export const signInAuth = createAsyncThunk("signInAuth", async (user) => {
 });
 
 export const logInAuth = createAsyncThunk("logInAuth", async (user) => {
-  try {
-    alert("logInAuth");
-    const userCredential = await signInWithEmailAndPassword(auth,user.email,user.password);
-    const docRef = doc(db,"users",userCredential.user.uid);
-    const responce = await getDoc(docRef)
-    return user;
-  } catch (error) {
-    console.log(error);
-  }
-});
+    try {
+      alert("logInAuth");
+  
+      // Step 1: Sign in the user
+      const userCredential = await signInWithEmailAndPassword(auth, user.email, user.password);
+      alert(userCredential.user.uid)
+      // Step 2: Fetch the document for the authenticated user using UID
+      const docSnap = await getDoc(doc(db, "Users", userCredential.user.uid)); // Reference to the document
+
+  
+      // Step 3: Check if the document exists and return its data
+      if (docSnap.exists()) {
+        console.log(docSnap.data()); // Log the document data
+        return { ...docSnap.data(), id: userCredential.user.uid }; // Return data with UID
+      } else {
+        console.log("No such document!");
+        return null;
+      }
+    } catch (error) {
+      console.log("Error in logInAuth:", error.message);
+      throw error; // Re-throw the error to be handled in the rejected action
+    }
+  });
 
 export const UserSlice = createSlice({
   name: "UsersAuthentication",
   initialState: {
-    users: [],
+    users: null,
   },
   reducers: {
     setProduct: (state, action) => {
@@ -57,12 +70,12 @@ export const UserSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(signInAuth.fulfilled, (state, action) => {
       console.log("extraReducer function call done");
-      state.users = [...state.users, action.payload];
+      state.users = action.payload;
     });
 
     builder.addCase(logInAuth.fulfilled, (state, action) => {
       console.log("extraReducer function call done");
-      state.users = [...state.users, action.payload];
+      state.users = action.payload;
     });
   },
 });

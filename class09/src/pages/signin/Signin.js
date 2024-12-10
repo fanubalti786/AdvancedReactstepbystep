@@ -73,18 +73,15 @@ export default function Signin() {
             Submit
         </button>
 
-        {users.length > 0 && users.map((value)=>
-        {
-          return (
+        {users?
             <dive>
-            <h1>{value.fullName}</h1>
-            <h1>{value.email}</h1>
-            <h1>{value.password}</h1>
+            <h1>{users.fullName}</h1>
+            <h1>{users.email}</h1>
+            <h1>{users.password}</h1>
 
 
             </dive>
-          )
-        })}
+          : <h1>SignUp first Please</h1>}
 
     </div>
   )
