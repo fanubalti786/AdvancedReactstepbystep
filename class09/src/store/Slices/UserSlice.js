@@ -1,30 +1,41 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import { db } from '../../config/firebase';
-import { auth } from '../../config/firebase';
 import { addDoc, collection, deleteDoc, doc, getDocs, limit, onSnapshot, orderBy, query, updateDoc, where } from 'firebase/firestore';
 
 export const signInAuth = createAsyncThunk(
     "signInAuth",
-     ()=>{
-        alert("signInAuth");
+    (user)=>
+    {
+        try {
+            alert("signInAuth");
+        return user;
+        } catch (error) {
+            console.log(error);
+        }
+        
     }
+);
 
-)
-
-
-export const loginAuth = createAsyncThunk(
-    "signInAuth",
-     (user)=>{
-        alert("LoginInAuth");
+export const logInAuth = createAsyncThunk(
+    "logInAuth",
+    (user)=>
+    {
+        try {
+            alert("logInAuth");
+        return user;
+        } catch (error) {
+            console.log(error);
+        }
+        
     }
+);
 
-)
 
+  
 export const UserSlice = createSlice({
-
-    name:"Products",
+    name:"UsersAuthentication",
     initialState:{
-        users:null
+        users:[]
         
     },
     reducers:{
@@ -35,24 +46,17 @@ export const UserSlice = createSlice({
         },
 
 
-
     },
 
-    extraReducers: (builder)=>
-    {
-        builder.addCase(signInAuth.fulfilled,(state,actio)=>
+    extraReducers: builder =>{
+        builder.addCase(signInAuth.fulfilled, (state,action)=>
         {
-            console.log("signInBuilder")
-            state.users = actio.payload
+            console.log("extraReducer function call done");
+            state.users = [...state.users, action.payload];
         },)
 
-        builder.addCase(loginAuth.fulfilled,(state,actio)=>
-            {
-                console.log("loginBuilder")
-            },)
+    
     }
-    
-    
 })
 
 export const {} = UserSlice.actions;

@@ -4,6 +4,9 @@ import { useSelector,useDispatch} from 'react-redux'
 import { signInAuth } from '../../store/Slices/UserSlice';
 
 export default function Signin() {
+
+  const users = useSelector((state)=> state.UserSlice.users)
+  console.log(users)
     const [fullName,setName] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
@@ -69,6 +72,16 @@ export default function Signin() {
         >
             Submit
         </button>
+
+        {users.length > 0 && users.map(()=>
+        {
+          return (
+            <dive>
+            <h1>Hello</h1>
+            </dive>
+          )
+        })}
+
     </div>
   )
 }
