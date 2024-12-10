@@ -68,7 +68,7 @@ export default function Login() {
         <br/>
         <br/>
         <Link to={"/Signin"}><button
-          style={{ padding: 7 }}
+          style={{ padding: 2 }}
           className="bg-warning"
         >
             SignUp
