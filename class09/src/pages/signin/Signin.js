@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import { useSelector,useDispatch} from 'react-redux'
 import { signInAuth } from '../../store/Slices/UserSlice';
+import { Link } from 'react-router-dom';
+
 
 export default function Signin() {
 
@@ -69,13 +71,13 @@ export default function Signin() {
         <br />
         <br/>
         
-        <button
+       <Link to={"/Login"}><button
           style={{ padding: 7 }}
           className="bg-warning"
           onClick={submitHandler}
         >
             Submit
-        </button>
+        </button></Link>
 
         {/* {users?
             <dive>

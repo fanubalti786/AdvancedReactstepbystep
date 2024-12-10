@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
 import { useSelector,useDispatch} from 'react-redux'
+import { Link } from 'react-router-dom';
 import { logInAuth } from '../../store/Slices/UserSlice';
+
 export default function Login() {
 
   // const users = useSelector((state)=>state.UserSlice.users)
@@ -27,6 +29,8 @@ export default function Login() {
     
     
         }
+
+
     
 
 
@@ -61,6 +65,14 @@ export default function Login() {
         >
             Login
         </button>
+        <br/>
+        <br/>
+        <Link to={"/Signin"}><button
+          style={{ padding: 7 }}
+          className="bg-warning"
+        >
+            SignUp
+        </button></Link>
 
         {/* {users?
             <dive>
