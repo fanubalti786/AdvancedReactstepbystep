@@ -6,13 +6,14 @@ import {
 import Home from '../pages/home/Home';
 import Signin from '../pages/signin/Signin';
 import Login from '../pages/login/Login';
+import PrivateRouting from './PrivateRouting';
 
 
 const router = createBrowserRouter(
     [
         {
             path:"/",
-            element: <Home/>
+            element: <PrivateRouting><Home/></PrivateRouting>
         },
 
         {

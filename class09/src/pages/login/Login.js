@@ -67,6 +67,7 @@ export default function Login() {
             <h1>{users.fullName}</h1>
             <h1>{users.email}</h1>
             <h1>{users.password}</h1>
+            <h1>{users.id}</h1>
 
 
             </dive>
