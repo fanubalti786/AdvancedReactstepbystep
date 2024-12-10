@@ -21,7 +21,7 @@ export default function Login() {
             }
     
     
-            useDispatch(loginAuth(user));
+          dispatch(loginAuth(user));
     
     
         }
