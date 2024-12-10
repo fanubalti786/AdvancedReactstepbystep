@@ -4,7 +4,7 @@ import { useSelector,useDispatch} from 'react-redux'
 import { logInAuth } from '../../store/Slices/UserSlice';
 export default function Login() {
 
-  const users = useSelector((state)=>state.UserSlice.users)
+  // const users = useSelector((state)=>state.UserSlice.users)
 
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
@@ -62,7 +62,7 @@ export default function Login() {
             Login
         </button>
 
-        {users?
+        {/* {users?
             <dive>
             <h1>{users.fullName}</h1>
             <h1>{users.email}</h1>
@@ -71,7 +71,7 @@ export default function Login() {
 
 
             </dive>
-        : <h1>Please Login with Actual Id</h1>}
+        : <h1>Please Login with Actual Id</h1>} */}
     </div>
   )
 }

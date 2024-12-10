@@ -5,8 +5,8 @@ import { signInAuth } from '../../store/Slices/UserSlice';
 
 export default function Signin() {
 
-  const users = useSelector((state)=> state.UserSlice.users)
-  console.log(users)
+  // const users = useSelector((state)=> state.UserSlice.users)
+  // console.log(users)
     const [fullName,setName] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
@@ -24,7 +24,11 @@ export default function Signin() {
 
         }
 
-        dispatch(signInAuth(user))
+        dispatch(signInAuth(user));
+
+        setEmail("");
+        setPassword("");
+        setName("");
         
 
 
@@ -73,7 +77,7 @@ export default function Signin() {
             Submit
         </button>
 
-        {users?
+        {/* {users?
             <dive>
             <h1>{users.fullName}</h1>
             <h1>{users.email}</h1>
@@ -81,7 +85,7 @@ export default function Signin() {
 
 
             </dive>
-          : <h1>SignUp first Please</h1>}
+          : <h1>SignUp first Please</h1>} */}
 
     </div>
   )

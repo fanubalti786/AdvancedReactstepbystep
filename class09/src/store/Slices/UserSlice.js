@@ -59,7 +59,7 @@ export const logInAuth = createAsyncThunk("logInAuth", async (user) => {
 export const UserSlice = createSlice({
   name: "UsersAuthentication",
   initialState: {
-    users: null,
+    users: null
   },
   reducers: {
     setProduct: (state, action) => {
@@ -70,7 +70,7 @@ export const UserSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(signInAuth.fulfilled, (state, action) => {
       console.log("extraReducer function call done");
-      state.users = action.payload;
+      
     });
 
     builder.addCase(logInAuth.fulfilled, (state, action) => {

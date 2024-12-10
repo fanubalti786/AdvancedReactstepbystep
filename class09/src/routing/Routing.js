@@ -7,6 +7,7 @@ import Home from '../pages/home/Home';
 import Signin from '../pages/signin/Signin';
 import Login from '../pages/login/Login';
 import PrivateRouting from './PrivateRouting';
+import PublicRouting from './PublicRouting';
 
 
 const router = createBrowserRouter(
@@ -18,12 +19,12 @@ const router = createBrowserRouter(
 
         {
             path:"/Signin",
-            element: <Signin/>
+            element: <PublicRouting><Signin/></PublicRouting> 
         },
 
         {
             path:"/Login",
-            element: <Login/>
+            element:<PublicRouting><Login/></PublicRouting> 
         },
 
      
