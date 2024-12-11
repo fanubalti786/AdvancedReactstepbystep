@@ -12,13 +12,9 @@ export default function Home() {
   const update = useSelector((state) => state.productSlice.update);
 
 
-
   const dispatch = useDispatch();
 
-  useEffect(()=>
-  {
-    dispatch(getCurrentUser())
-  })
+  
 
   // its a comment 
   

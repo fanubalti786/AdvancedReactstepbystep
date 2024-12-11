@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { db } from "../../config/firebase";
 import { auth } from "../../config/firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import {
   addDoc,
   collection,
@@ -22,14 +22,27 @@ import {
 
 export const getCurrentUser = createAsyncThunk(
     "getCurrentUser",
-    async ()=>
+     (data,store)=>
     {
         try {
-            const user = auth.currentUser;
-            if(user)
+            onAuthStateChanged(auth,async(user) =>
             {
-                return user;
-            }
+              if(user)
+              {
+                const uid  = user.uid;
+                const docSnap = await getDoc(doc(db,"Users",uid));
+                const userData = {...docSnap.data(),id:docSnap.id};
+                alert(uid)
+                store.dispatch(setUser(userData))
+
+              }
+              else
+              {
+                alert("Please log in to continue!")
+              }
+              
+
+            })
         } catch (error) {
             console.log(error.message)
         }
@@ -111,8 +124,8 @@ export const UserSlice = createSlice({
     users: null
   },
   reducers: {
-    setProduct: (state, action) => {
-      state.products = action.payload;
+    setUser: (state, action) => {
+      state.users = action.payload;
     },
   },
 
@@ -134,11 +147,12 @@ export const UserSlice = createSlice({
       });
 
     builder.addCase(getCurrentUser.fulfilled, (state, action) => {
+        // alert("builder",action.payload.id)
         console.log("extraReducer function call done", action.payload);
         state.users = action.payload
       });
   },
 });
 
-export const {} = UserSlice.actions;
+export const {setUser} = UserSlice.actions;
 export default UserSlice.reducer;
