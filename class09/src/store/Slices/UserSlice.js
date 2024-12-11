@@ -118,7 +118,7 @@ export const UserSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(signInAuth.fulfilled, (state, action) => {
-      console.log("extraReducer function call done");
+      console.log("extraReducer function call done",action.payload);
       
     });
 
@@ -131,6 +131,11 @@ export const UserSlice = createSlice({
     builder.addCase(logOutAuth.fulfilled, (state, action) => {
         console.log("extraReducer function call done", action.payload);
         state.users = null
+      });
+
+    builder.addCase(getCurrentUser.fulfilled, (state, action) => {
+        console.log("extraReducer function call done", action.payload);
+        state.users = action.payload
       });
   },
 });
