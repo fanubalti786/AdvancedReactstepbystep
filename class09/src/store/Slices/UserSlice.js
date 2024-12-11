@@ -25,6 +25,7 @@ export const getCurrentUser = createAsyncThunk(
      (data,store)=>
     {
         try {
+            store.dispatch(setLoading(true));
             onAuthStateChanged(auth,async(user) =>
             {
               if(user)
@@ -32,12 +33,14 @@ export const getCurrentUser = createAsyncThunk(
                 const uid  = user.uid;
                 const docSnap = await getDoc(doc(db,"Users",uid));
                 const userData = {...docSnap.data(),id:docSnap.id};
-                alert(uid)
                 store.dispatch(setUser(userData))
+                store.dispatch(setLoading(false));
+                
 
               }
               else
               {
+                store.dispatch(setLoading(false));
                 alert("Please log in to continue!")
               }
               
@@ -121,12 +124,17 @@ export const logInAuth = createAsyncThunk("logInAuth", async (user) => {
 export const UserSlice = createSlice({
   name: "UsersAuthentication",
   initialState: {
-    users: null
+    users: null,
+    Loading: false
   },
   reducers: {
     setUser: (state, action) => {
       state.users = action.payload;
     },
+    
+    setLoading: (state,action) => {
+      state.Loading = action.payload;
+    }
   },
 
   extraReducers: (builder) => {
@@ -154,5 +162,5 @@ export const UserSlice = createSlice({
   },
 });
 
-export const {setUser} = UserSlice.actions;
+export const {setUser,setLoading} = UserSlice.actions;
 export default UserSlice.reducer;

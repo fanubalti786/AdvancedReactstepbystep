@@ -11,12 +11,20 @@ import { setUpdate } from "../../store/Slices/ProductSlice";
 
 
 export default function Form(props) {
+
+  const Add = useSelector((state)=> state.productSlice.Add);
+  const Update = useSelector((state)=> state.productSlice.Update);
+
+
+
   const [id,setId] = useState("")
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
+  
+
 
   const dispatch = useDispatch();
 
@@ -56,6 +64,9 @@ export default function Form(props) {
     
 
   const AddHandler = async () => {
+
+    
+
     let obj;
 
 
@@ -86,11 +97,13 @@ export default function Form(props) {
       if(props.update)
       {
         dispatch(updateProductApi(obj))
+        
 
       }
       else
       {
         dispatch(addProductApi(obj))
+        
       }
     
     dispatch(setUpdate(null))
@@ -151,7 +164,7 @@ export default function Form(props) {
           className="bg-warning"
           onClick={AddHandler}
         >
-          {props.update? "Update!":"Add!"}
+          {props.update? Update:Add}
         </button>
       </div>
     </div>

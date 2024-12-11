@@ -5,11 +5,15 @@ import {  deleteProductApi, fetchProduct } from "../../store/Slices/ProductSlice
 import { setUpdate } from "../../store/Slices/ProductSlice";
 import Form from "../../components/form/Form";
 import { logOutAuth } from "../../store/Slices/UserSlice";
-import { getCurrentUser } from "../../store/Slices/UserSlice";
 
 export default function Home() {
   const product = useSelector((state) => state.productSlice.products);
   const update = useSelector((state) => state.productSlice.update);
+  const Loading = useSelector((state) => state.UserSlice.Loading)
+  const Add = useSelector((state) => state.UserSlice.Add);
+  const Update = useSelector((state) => state.UserSlice.Update_);
+
+
 
 
   const dispatch = useDispatch();
@@ -20,7 +24,7 @@ export default function Home() {
   
   useEffect(()=>
     {
-
+      alert(Loading)
       dispatch(fetchProduct());
       
     
@@ -78,7 +82,7 @@ export default function Home() {
           );
         })
       ) : (
-        <h1>Not Available Data</h1>
+        <h1>Loding.....</h1>
       )}
     </div>
   );

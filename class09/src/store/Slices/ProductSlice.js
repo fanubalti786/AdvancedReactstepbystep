@@ -1,6 +1,8 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import { db } from '../../config/firebase';
 import { addDoc, collection, deleteDoc, doc, getDocs, limit, onSnapshot, orderBy, query, updateDoc, where } from 'firebase/firestore';
+import { setLoading } from './UserSlice';
+
 
 export const fetchProduct = createAsyncThunk(
     "fetch/fetchProduct",
@@ -63,8 +65,11 @@ export const fetchProduct = createAsyncThunk(
 
 export const addProductApi = createAsyncThunk(
     "fetch/addProductApi",
-    async (product) => {
+    async (product,store) => {
         try {
+            store.dispatch(setUpdate_("Loading..."));
+            store.dispatch(setAdd("Loading..."));
+
             console.log(product);  
             const collectionRef = collection(db, "products");
             // Add the product to the database and get the document reference
@@ -124,7 +129,9 @@ export const ProductSlice = createSlice({
     name:"Products",
     initialState:{
         products:null,
-        update:null
+        update:null,
+        Add:"Add!",
+        Update_:"Update!"
         
     },
     reducers:{
@@ -134,15 +141,21 @@ export const ProductSlice = createSlice({
             state.products = action.payload;
         },
 
-        setPost:(state,action)=>
+        setUpdate:(state,action)=>
+            {
+                state.update = action.payload;
+            },
+
+
+        setUpdate_:(state,action)=>
         {
-            console.log("setPost");
+            state.Update_ = action.payload;
         },
 
-        setUpdate:(state,action)=>
-        {
-            state.update = action.payload;
-        },
+        setAdd:(state,action)=>
+            {
+                state.Add = action.payload;
+            },
 
        
 
@@ -165,6 +178,8 @@ export const ProductSlice = createSlice({
                 console.log("extraReducerdelete function call done");
                 let newProduct = [action.payload,...state.products]
                 state.products = newProduct;
+                state.Add = "Add!";
+                state.Update_ = "Update";
                 
             },)
 
@@ -203,5 +218,5 @@ export const ProductSlice = createSlice({
     }
 })
 
-export const {setUpdate} = ProductSlice.actions;
+export const {setUpdate,setAdd,setUpdate_} = ProductSlice.actions;
 export default ProductSlice.reducer;
