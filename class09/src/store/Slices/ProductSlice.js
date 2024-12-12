@@ -176,7 +176,7 @@ export const ProductSlice = createSlice({
 
         builder.addCase(addProductApi.fulfilled, (state,action)=>
             {
-                alert("add")
+                // alert("add")
                 console.log("extraReducerdelete function call done");
                 let newProduct = [action.payload,...state.products]
                 state.products = newProduct;
@@ -193,14 +193,14 @@ export const ProductSlice = createSlice({
                     {
                         return item.id !== action.payload
                     })
-                    alert(newProduct.id)
+                    // alert(newProduct.id)
                     state.products = newProduct;
                     
                 },)
 
                 builder.addCase(updateProductApi.fulfilled, (state,action)=>
                     {
-                        alert(action.payload.id)
+                        // alert(action.payload.id)
                         let newdata = state.products.map((item) => {
                             if (item.id === action.payload.id) {
                               return action.payload;

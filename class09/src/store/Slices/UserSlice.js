@@ -41,7 +41,6 @@ export const getCurrentUser = createAsyncThunk(
               else
               {
                 store.dispatch(setLoading(false));
-                alert("Please log in to continue!")
               }
               
 
@@ -56,7 +55,7 @@ export const getCurrentUser = createAsyncThunk(
 
 export const signInAuth = createAsyncThunk("signInAuth", async (user) => {
   try {
-    alert("signInAuth");
+    // alert("signInAuth");
     const userCredential = await createUserWithEmailAndPassword(auth,user.email,user.password)
     const response = await setDoc(doc(db,"Users",userCredential.user.uid),user)
     
@@ -96,13 +95,12 @@ export const logOutAuth = createAsyncThunk(
 
 
 
-export const logInAuth = createAsyncThunk("logInAuth", async (user) => {
+export const logInAuth = createAsyncThunk("logInAuth", async (user,store) => {
     try {
-      alert("logInAuth");
-  
+      store.dispatch(setLoadingLogin(true))
       // Step 1: Sign in the user
       const userCredential = await signInWithEmailAndPassword(auth, user.email, user.password);
-      alert(userCredential.user.uid)
+      // alert(userCredential.user.uid)
       // Step 2: Fetch the document for the authenticated user using UID
       const docSnap = await getDoc(doc(db, "Users", userCredential.user.uid)); // Reference to the document
 
@@ -116,6 +114,7 @@ export const logInAuth = createAsyncThunk("logInAuth", async (user) => {
         return null;
       }
     } catch (error) {
+      store.dispatch(setLoadingLogin(false))
       console.log("Error in logInAuth:", error.message);
       throw error; // Re-throw the error to be handled in the rejected action
     }
@@ -125,7 +124,8 @@ export const UserSlice = createSlice({
   name: "UsersAuthentication",
   initialState: {
     users: null,
-    Loading: false
+    Loading: false,
+    LoadingLogin: false
   },
   reducers: {
     setUser: (state, action) => {
@@ -134,6 +134,10 @@ export const UserSlice = createSlice({
     
     setLoading: (state,action) => {
       state.Loading = action.payload;
+    },
+
+    setLoadingLogin: (state,action) => {
+      state.LoadingLogin = action.payload;
     }
   },
 
@@ -146,6 +150,7 @@ export const UserSlice = createSlice({
     builder.addCase(logInAuth.fulfilled, (state, action) => {
       console.log("extraReducer function call done");
       state.users = action.payload;
+      state.LoadingLogin = false
     });
 
 
@@ -162,5 +167,5 @@ export const UserSlice = createSlice({
   },
 });
 
-export const {setUser,setLoading} = UserSlice.actions;
+export const {setUser,setLoading,setLoadingLogin} = UserSlice.actions;
 export default UserSlice.reducer;

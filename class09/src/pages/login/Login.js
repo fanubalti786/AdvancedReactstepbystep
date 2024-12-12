@@ -6,7 +6,7 @@ import { logInAuth } from '../../store/Slices/UserSlice';
 
 export default function Login() {
 
-  // const users = useSelector((state)=>state.UserSlice.users)
+  const LoadingLogin = useSelector((state)=>state.UserSlice.LoadingLogin)
 
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
@@ -63,7 +63,7 @@ export default function Login() {
           className="bg-warning"
           onClick={loginHandler}
         >
-            Login
+          {LoadingLogin? "Loading...":"Login"} 
         </button>
         <br/>
         <br/>
@@ -71,7 +71,7 @@ export default function Login() {
           style={{ padding: 2 }}
           className="bg-warning"
         >
-            SignUp
+            Creat New Acount
         </button></Link>
 
         {/* {users?

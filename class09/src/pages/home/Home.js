@@ -24,7 +24,7 @@ export default function Home() {
   
   useEffect(()=>
     {
-      alert(Loading)
+      // alert(Loading)
       dispatch(fetchProduct());
       
     
@@ -34,13 +34,13 @@ export default function Home() {
 
     const deleteHandler = (id)=>
     {
-      alert(id)
+      // alert(id)
       dispatch(deleteProductApi(id))
     }
 
     const updateHandler = ((item)=>
     {
-      alert(item.id)
+      // alert(item.id)
       dispatch(setUpdate(item))
     })
 

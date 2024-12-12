@@ -76,7 +76,7 @@ export default function Signin() {
           className="bg-warning"
           onClick={submitHandler}
         >
-            Submit
+            SignUp
         </button></Link>
 
         {/* {users?

@@ -32,7 +32,7 @@ export default function Form(props) {
     {
       if(props.update)
         {
-          alert("input set")
+          // alert("input set")
           setId(props.update.id)
           setTitle(props.update.title);
           setPrice(props.update.price);
