@@ -109,8 +109,10 @@ export const addProductApi = createAsyncThunk(
 
     export const updateProductApi = createAsyncThunk(
         "fetch/updateProductApi",
-        async (product)=>
+        async (product,store)=>
         {
+            store.dispatch(setUpdate_("Loading..."));
+            store.dispatch(setAdd("Loading..."));
             let copy = {...product};
             try {
             const docRef = doc(db,"products",product.id);
@@ -209,6 +211,8 @@ export const ProductSlice = createSlice({
                           });
 
                           state.products = newdata;
+                          state.Add = "Add!";
+                          state.Update_ = "Update";
                         
                     },)
         

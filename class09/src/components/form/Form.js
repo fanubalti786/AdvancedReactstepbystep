@@ -13,7 +13,7 @@ import { setUpdate } from "../../store/Slices/ProductSlice";
 export default function Form(props) {
 
   const Add = useSelector((state)=> state.productSlice.Add);
-  const Update = useSelector((state)=> state.productSlice.Update);
+  const Update = useSelector((state)=> state.productSlice.Update_);
 
 
 
