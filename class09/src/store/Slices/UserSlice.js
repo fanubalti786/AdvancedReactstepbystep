@@ -75,8 +75,9 @@ export const signInAuth = createAsyncThunk("signInAuth", async (user) => {
 
 export const logOutAuth = createAsyncThunk(
     "logOutAuth",
-    async ()=>
+    async (raw,store)=>
     {
+      store.dispatch(setLoadingLogin(true));
         try {
             await signOut(auth);
             return true;
@@ -115,7 +116,7 @@ export const logInAuth = createAsyncThunk("logInAuth", async (user,store) => {
       }
     } catch (error) {
       store.dispatch(setLoadingLogin(false))
-      console.log("Error in logInAuth:", error.message);
+      alert("Error in logInAuth:", error.message);
       throw error; // Re-throw the error to be handled in the rejected action
     }
   });
@@ -157,6 +158,7 @@ export const UserSlice = createSlice({
     builder.addCase(logOutAuth.fulfilled, (state, action) => {
         console.log("extraReducer function call done", action.payload);
         state.users = null
+        state.LoadingLogin = false
       });
 
     builder.addCase(getCurrentUser.fulfilled, (state, action) => {

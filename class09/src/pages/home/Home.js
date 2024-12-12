@@ -9,9 +9,6 @@ import { logOutAuth } from "../../store/Slices/UserSlice";
 export default function Home() {
   const product = useSelector((state) => state.productSlice.products);
   const update = useSelector((state) => state.productSlice.update);
-  const Loading = useSelector((state) => state.UserSlice.Loading)
-  const Add = useSelector((state) => state.UserSlice.Add);
-  const Update = useSelector((state) => state.UserSlice.Update_);
 
 
 

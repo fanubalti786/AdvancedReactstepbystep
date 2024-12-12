@@ -71,13 +71,13 @@ export default function Signin() {
         <br />
         <br/>
         
-       <Link to={"/Login"}><button
+       <button
           style={{ padding: 7 }}
           className="bg-warning"
           onClick={submitHandler}
         >
-            SignUp
-        </button></Link>
+            Submit
+        </button>
 
         {/* {users?
             <dive>
