@@ -9,6 +9,9 @@ import { logOutAuth } from "../../store/Slices/UserSlice";
 export default function Home() {
   const product = useSelector((state) => state.productSlice.products);
   const update = useSelector((state) => state.productSlice.update);
+  const user = useSelector((state)=> state.UserSlice.users)
+  
+  let userId = user.id
 
 
 
@@ -29,10 +32,19 @@ export default function Home() {
     },[])
 
 
-    const deleteHandler = (id)=>
+    const deleteHandler = (id,uid)=>
     {
-      // alert(id)
+      if(uid===userId)
+      {
+        // alert(id)
       dispatch(deleteProductApi(id))
+      }
+      else
+      {
+        alert("You Can't Delete It...")
+        
+      }
+      
     }
 
     const updateHandler = ((item)=>
@@ -70,7 +82,7 @@ export default function Home() {
                 <h1>{item.title}</h1>
                 <p>{item.category}</p>
                 <p>{item.price}</p>
-                <button onClick={()=>deleteHandler(item.id)}>Delete</button>
+                <button onClick={()=>deleteHandler(item.id,item.uid)}>Delete</button>
                 <button onClick={()=>updateHandler(item)}>Edit</button>
 
                 <hr/>

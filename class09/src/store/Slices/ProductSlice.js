@@ -94,10 +94,10 @@ export const addProductApi = createAsyncThunk(
         "fetch/deleteProductApi",
         async (id)=>
         {
+            alert("You Really Wan't to Delete It")
             try {
-            alert("delete")
             const dogRef = doc(db,"products",id);
-            const responce = await deleteDoc(dogRef);
+            await deleteDoc(dogRef);
             return id;
             } catch (error) {
                 console.log(error);
@@ -195,6 +195,8 @@ export const ProductSlice = createSlice({
                     })
                     // alert(newProduct.id)
                     state.products = newProduct;
+                    alert("item Successfully deleted")
+
                     
                 },)
 
