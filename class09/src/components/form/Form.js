@@ -11,7 +11,7 @@ import { setUpdate } from "../../store/Slices/ProductSlice";
 
 
 export default function Form(props) {
-
+  const user = useSelector((state)=> state.UserSlice.users)
   const Add = useSelector((state)=> state.productSlice.Add);
   const Update = useSelector((state)=> state.productSlice.Update_);
 
@@ -23,6 +23,7 @@ export default function Form(props) {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
+  const [uid,setUid] = useState(user.id)
   
 
 
@@ -85,6 +86,7 @@ export default function Form(props) {
     else
     {
       obj = {
+        uid,
         image,
         title,
         price,

@@ -64,8 +64,9 @@ export default function Home() {
         product?.map((item) => {
           return (
               <div>
-                <h1>{item.image}</h1>
                 <h1>{item.id}</h1>
+                <h1>{item.uid}</h1>
+                <h1>{item.image}</h1>
                 <h1>{item.title}</h1>
                 <p>{item.category}</p>
                 <p>{item.price}</p>

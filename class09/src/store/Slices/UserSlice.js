@@ -27,7 +27,6 @@ export const getCurrentUser = createAsyncThunk(
      (data,store)=>
     {
         try {
-          skipAuthStateChange = false;
           store.dispatch(setLoading(true));
             onAuthStateChanged(auth,async(user) =>
             {
@@ -36,21 +35,25 @@ export const getCurrentUser = createAsyncThunk(
                 console.log("Skipping onAuthStateChanged logic.");
                 return; // Listener will not proceed
               }
-
-              if(user)
-              {
-                const uid  = user.uid;
-                const docSnap = await getDoc(doc(db,"Users",uid));
-                const userData = {...docSnap.data(),id:docSnap.id};
-                store.dispatch(setUser(userData))
-                store.dispatch(setLoading(false));
-                
-
-              }
               else
               {
-                store.dispatch(setLoading(false));
+                if(user)
+                  {
+                    const uid  = user.uid;
+                    const docSnap = await getDoc(doc(db,"Users",uid));
+                    const userData = {...docSnap.data(),id:docSnap.id};
+                    store.dispatch(setUser(userData))
+                    store.dispatch(setLoading(false));
+                    
+    
+                  }
+                  else
+                  {
+                    store.dispatch(setLoading(false));
+                  }
               }
+
+              
               
 
             })
