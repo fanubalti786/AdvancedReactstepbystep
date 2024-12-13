@@ -49,8 +49,18 @@ export default function Home() {
 
     const updateHandler = ((item)=>
     {
-      // alert(item.id)
-      dispatch(setUpdate(item))
+
+      if(item.uid===userId)
+        {
+         // alert(item.id)
+         dispatch(setUpdate(item))
+        
+        }
+        else
+        {
+          alert("You Can't Edit It...")
+          
+        }
     })
 
     const logoutHandler = ()=>

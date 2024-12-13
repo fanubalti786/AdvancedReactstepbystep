@@ -75,6 +75,7 @@ export default function Form(props) {
     {
       obj = {
         id,
+        uid,
         image,
         title,
         price,
