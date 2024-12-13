@@ -18,16 +18,25 @@ import {
   getDoc
 } from "firebase/firestore";
 
+let skipAuthStateChange = false;
 
 
 export const getCurrentUser = createAsyncThunk(
+
     "getCurrentUser",
      (data,store)=>
     {
         try {
-            store.dispatch(setLoading(true));
+          skipAuthStateChange = false;
+          store.dispatch(setLoading(true));
             onAuthStateChanged(auth,async(user) =>
             {
+
+              if (skipAuthStateChange) {
+                console.log("Skipping onAuthStateChanged logic.");
+                return; // Listener will not proceed
+              }
+
               if(user)
               {
                 const uid  = user.uid;
@@ -56,11 +65,12 @@ export const getCurrentUser = createAsyncThunk(
 export const signInAuth = createAsyncThunk("signInAuth", async (user) => {
   try {
     // alert("signInAuth");
+    skipAuthStateChange = true; // Disable listener
     const userCredential = await createUserWithEmailAndPassword(auth,user.email,user.password)
     const response = await setDoc(doc(db,"Users",userCredential.user.uid),user)
     
 
-    return {...user,id:userCredential.user.uid};
+    // return {...user,id:userCredential.user.uid};
   } catch (error) {
     console.log(error);
   }
