@@ -17,6 +17,7 @@ import {
   where,
   getDoc
 } from "firebase/firestore";
+import { Navigate, useNavigate } from "react-router-dom";
 
 let skipAuthStateChange = false;
 
@@ -65,12 +66,13 @@ export const getCurrentUser = createAsyncThunk(
 
 
 
-export const signInAuth = createAsyncThunk("signInAuth", async (user) => {
+export const signInAuth = createAsyncThunk("signInAuth", async (user,navigate) => {
   try {
     // alert("signInAuth");
     skipAuthStateChange = true; // Disable listener
     const userCredential = await createUserWithEmailAndPassword(auth,user.email,user.password)
     const response = await setDoc(doc(db,"Users",userCredential.user.uid),user)
+    navigate("../../login/Login")
     
 
     // return {...user,id:userCredential.user.uid};

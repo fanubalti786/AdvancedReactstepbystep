@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useSelector,useDispatch} from 'react-redux'
+import { useNavigate } from 'react-router-dom';
 import { signInAuth } from '../../store/Slices/UserSlice';
 import { Link } from 'react-router-dom';
 
@@ -14,6 +15,7 @@ export default function Signin() {
     const [password,setPassword] = useState("");
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     
 
 
@@ -26,7 +28,7 @@ export default function Signin() {
 
         }
 
-        dispatch(signInAuth(user));
+        dispatch(signInAuth(user,navigate));
 
         setEmail("");
         setPassword("");
@@ -71,13 +73,13 @@ export default function Signin() {
         <br />
         <br/>
         
-        <Link to={"/Login"}><button
+        <button
            style={{ padding: 7 }}
           className="bg-warning"
           onClick={submitHandler}
         >
             SignUp
-        </button></Link>
+        </button>
 
         {/* {users?
             <dive>
