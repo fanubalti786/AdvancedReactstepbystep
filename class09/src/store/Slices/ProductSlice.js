@@ -226,3 +226,4 @@ export const ProductSlice = createSlice({
 
 export const {setUpdate,setAdd,setUpdate_} = ProductSlice.actions;
 export default ProductSlice.reducer;
+// updated
