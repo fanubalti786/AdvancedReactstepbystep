@@ -15,7 +15,7 @@ export default function App() {
       <Button/>
       <Footer/>
       {/* <img src={img} /> */}
-      <img src={require("./assets/image.png")} />
+      {/* <img src={require("./assets/image.png")} /> */}
       <br/>
       <img src='/logo192.png' />
       <br/>
