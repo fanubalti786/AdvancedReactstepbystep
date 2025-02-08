@@ -11,7 +11,7 @@ export default function Form(props) {
   const [error,setError] = useState("");
 
   const schema = yup.object().shape({
-    id: yup.string().max(5).required(),
+    id: yup.number().max(99999).required(),
     name: yup.string().max(5).required(),
     email: yup.string().email().required(),
     rolno: yup.number().max(99999).required().typeError("must 5 characters of number Valid"),
