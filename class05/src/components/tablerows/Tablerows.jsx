@@ -13,7 +13,7 @@ export default function Tablerows({ student, Handler }) {
         <td>{student.rolno}</td>
         <td>{student.class}</td>
         <button
-          className="bg-danger"
+          className="delete-btn"
           onClick={() => onClickHandler(student.id)}
         >
           Delete
