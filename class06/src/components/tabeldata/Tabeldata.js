@@ -64,6 +64,7 @@ export default function Tabeldata() {
     let updateData = info.map((item) => {
       if (item.id === update.id) {
         console.log("ifcondition");
+        setupdate("")
         return {
           ...item,
           // id:newStudent.id,
