@@ -2,27 +2,27 @@ import React from "react";
 import { useState,useEffect } from "react";
 import * as yup from "yup";
 
-export default function Form(props) {
-
-  
+export default function Form({onAddHandler, onUpdateHandler, update}) {
 
 
-  
 
   useEffect(()=>
     {
 
-      if(props.update)
+      if(update)
       {
-        setId(props.update.id)
-        setName(props.update.name)
-        setEmail(props.update.email)
-        setRolno(props.update.rolno)
-        setCourse(props.update.class)
+        setId(update.id)
+        setName(update.name)
+        setEmail(update.email)
+        setRolno(update.rolno)
+        setCourse(update.class)
         // setCounter(counter + 1)
       }
     
-    },[props.update])
+    },[update])
+
+
+    
 
   const [id, setId] = useState("");
   const [name, setName] = useState("");
@@ -30,7 +30,7 @@ export default function Form(props) {
   const [rollno, setRolno] = useState("");
   const [course, setCourse] = useState("");
   const [error,setError] = useState("");
-  const [counter,setCounter] = useState(0)
+  // const [counter,setCounter] = useState(0)
 
 
 
@@ -42,20 +42,37 @@ export default function Form(props) {
     class: yup.string().max(4).required()
   });
 
+  
+
+
+  const updateValidation = (updated) => {
+    if(id === update?.id && course === update?.class)
+    {
+      onUpdateHandler(updated)
+    }
+    else
+    {
+      alert("You Can't Change Id and Class")
+    }
+  }
+
   const submitHandler = async() => {
 
-    let data = {
+    const updated = {
       id: id,
       name: name,
       email: email,
       rolno: rollno,
       class: course,
-    };
+    }
+
+   
 
     try {
       // let result = await schema.validate(data);
-      await schema.validate(data);
-      {props.update? props.onUpdateHandler(data): props.onAddHandler(data)}
+      await schema.validate(updated);
+      {update? updateValidation(updated): onAddHandler(updated)}
+      // {update? onUpdateHandler(data): onAddHandler(data)}
       // props.onAddHandler(data);
       setId("");
       setName("");
@@ -115,7 +132,7 @@ export default function Form(props) {
 
       <br />
       <button className="bg-warning" onClick={submitHandler}>
-        {props.update? "Update":"Add"}
+        {update? "Update":"Add"}
       </button>
       
     </div>
