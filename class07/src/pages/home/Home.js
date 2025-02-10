@@ -9,24 +9,29 @@ export default function Home() {
     console.log(product)
     const dispatch = useDispatch()
 
-    // useEffect(()=>
-    // {
-    //   dispatch(fetchProduct());
 
-    // },[])
+    // agr me [] iska use na keron tu bar bar re render hoga 
+    useEffect(()=>
+    {
+      console.log("hello")
+      dispatch(fetchProduct());
+
+    },[])
     
 
-    const GetData = ()=>
-    {
-      dispatch(fetchProduct());
-    };
+    // const GetData = ()=>
+    // {
+    //   dispatch(fetchProduct());
+    // };
 
 
   return (
     <div>
     
 
-      <button onClick={GetData} >GetData!</button>
+      {/* <button onClick={GetData} >GetData!</button> */}
+      <button>GetData!</button>
+
 
       {product?.map((item)=>
       {
