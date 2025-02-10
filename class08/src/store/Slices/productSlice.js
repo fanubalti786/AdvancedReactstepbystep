@@ -67,11 +67,12 @@ export const addProductApi = createAsyncThunk(
 
     export const updateProductApi = createAsyncThunk(
         "fetch/updateProductApi",
-        async (product)=>
+        async (product,id)=>
         {
             try {
+                
                 alert("updateProductApi")
-            const responce = await fetch(`https://fakestoreapi.com/products${product.id}`, {
+            const responce = await fetch(`https://fakestoreapi.com/products${id}`, {
                 method: "PATCH",
                 headers:{
                     "Content-Type":"application/json",
@@ -81,9 +82,8 @@ export const addProductApi = createAsyncThunk(
             });
             const data = await responce.json();
             alert(data.id);
-            // console.log("Api function triger");
             console.log(data);
-            // return data;
+            return data;
             } catch (error) {
                 console.log(error);
             }
@@ -146,7 +146,7 @@ export const ProductSlice = createSlice({
             builder.addCase(addProductApi.fulfilled, (state,action)=>
                 {
                     console.log("extraReducerdelete function call done");
-                    let newProduct = [action.payload,...state.products]
+                    let newProduct = [...state.products,action.payload]
                     state.products = newProduct;
                     
                 },)

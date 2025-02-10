@@ -28,6 +28,7 @@ export default function New() {
 
               <div>
                 <h1>{item.title}</h1>
+                <h1>{item.id}</h1>
                 <p>{item.description}</p>
                 <p>{item.price}</p>
                 <div style={{display:'flex'}}>

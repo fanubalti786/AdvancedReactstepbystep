@@ -32,7 +32,6 @@ export default function Form() {
     let obj;
     if (update) {
       obj = {
-        id,
         title,
         price,
         description,
@@ -52,7 +51,7 @@ export default function Form() {
     alert(image);
 
     {
-      update ? dispatch(updateProductApi(obj)) : dispatch(addProductApi(obj));
+      update ? dispatch(updateProductApi(obj,id)) : dispatch(addProductApi(obj));
     }
     setTitle("");
     setPrice("");
