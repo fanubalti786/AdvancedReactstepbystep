@@ -11,10 +11,9 @@ export default function Home() {
   console.log(product);
 
   const dispatch = useDispatch();
-
   useEffect(()=>
   {
-    if(product.length === 0)
+    if(true)
     {
       alert("Triger")
     dispatch(fetchProduct());

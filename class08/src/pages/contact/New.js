@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 
 export default function New() {
   const test = useSelector((state) => state.productSlice.test);
   const product = useSelector((state) => state.productSlice.products);
+
+  useEffect(() => 
+  {
+    alert("hello")
+  })
 
   
 
