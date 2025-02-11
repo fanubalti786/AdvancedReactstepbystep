@@ -13,7 +13,7 @@ export default function Home() {
   const dispatch = useDispatch();
   useEffect(()=>
   {
-    if(true)
+    if(product.length===0)
     {
       alert("Triger")
     dispatch(fetchProduct());
@@ -27,6 +27,8 @@ export default function Home() {
         alert("Unmount")
       }
     )
+
+    
 
   },[])
 
