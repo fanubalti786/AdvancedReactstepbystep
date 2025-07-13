@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../button/Button";
+import "../button/button.css"
 
 
 
@@ -20,7 +21,7 @@ export default function Header() {
         role="group"
         aria-label="Basic mixed styles example"
       >
-        <button type="button" class="btn btn-danger btnn  " style={{backgroundColor: "orange"}}>
+        <button type="button" class="btn btn-danger btnng ">
           Left
         </button>
         <button type="button" class="btn btn-warning">
